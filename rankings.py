@@ -171,8 +171,14 @@ def generate_rankings():
     merged_df = kenpom_df.merge(espn_df, left_on="Team", right_on="School", how="outer")
     merged_df["Total"] = ((merged_df["Rk"]*.5) + (merged_df["sor_rank"]*.5))
     print(merged_df.columns)
-    merged_df = merged_df.drop(columns=["CONF"])
+    merged_df = merged_df.drop(columns=["CONF", "Team_y", "School"])
+    merged_df = merged_df.rename(columns={
+    'Team_x': 'Team',
+    'Rk': 'Predictive Rank',
+    'sor_rank': 'Resume Rank',
+    'Total': 'Score'
+})
 
 # with pd.option_context('display.max_rows', None, 'display.max_columns', None):
     # display()
-    return merged_df.sort_values(by='Total').reset_index(drop=True)
+    return merged_df.sort_values(by='Score').reset_index(drop=True)
