@@ -178,14 +178,18 @@ def generate_rankings():
     'sor_rank': 'Resume Rank',
     'Total': 'Score'
 })
-    merged_df.insert(0, 'Rank', range(len(merged_df)))
-
-    merged_df = merged_df[['Team', 'Predictive Rank', 'Resume Rank', 'Score']]
-
-    merged_df.sort_values(by='Score').reset_index(drop=True)
+    merged_df = (
+    merged_df
+        .sort_values(by='Score', ascending=False)
+        .reset_index(drop=True)
+)
 
     merged_df.insert(0, 'Rank', merged_df.index + 1)
 
+    merged_df = merged_df[['Rank', 'Team', 'Predictive Rank', 'Resume Rank', 'Score']]
+
+    return merged_df
+
+
 # with pd.option_context('display.max_rows', None, 'display.max_columns', None):
     # display()
-    return merged_df
