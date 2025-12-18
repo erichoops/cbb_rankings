@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 def get_espn_sor():
     
     espn_to_kenpom = {
-     "Arizona Wildcats": "Arizona",
+    "Arizona Wildcats": "Arizona",
     "Purdue Boilermakers": "Purdue",
     "Duke Blue Devils": "Duke",
     "Michigan State Spartans": "Michigan St.",
@@ -98,8 +98,13 @@ def get_espn_sor():
     "SMU Mustangs": "SMU",
     "Miami Hurricanes": "Miami FL",
     "VCU Rams": "VCU", 
-    "Oklahoma State Cowboys": "Oklahoma St.",
-    "": "San Diego St.",
+    "Oklahoma Sooners": "Oklahoma",
+    "Boise State Broncos": "Boise St.",
+    "Washington Huskies": "Washington",
+    "Seton Hall Pirates": "Seton Hall",
+    "Butler Bulldogs": "Butler",
+    "Notre Dame Fighting Irish": "Notre Dame",
+    "George Mason Patriots": "George Mason"
     }
 
     options = Options()
@@ -112,7 +117,7 @@ def get_espn_sor():
     # options=options
     driver = webdriver.Chrome()
     driver.get(espn_url)
-    time.sleep(3)
+    time.sleep(5)
     html = driver.page_source
 
     soup = BeautifulSoup(html, "html.parser")
