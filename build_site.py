@@ -3,21 +3,12 @@ from datetime import datetime
 
 df = generate_rankings()
 
-styled_df = (
-    df
-        .style
-        .background_gradient(subset=['Score'], cmap='RdYlGn')
-        .format({'Score': '{:.3f}'})
+
+table_html = df.to_html(
+    index=False,
+    classes="rankings-table",
+    border=0
 )
-
-table_html = styled_df.to_html()
-
-
-# table_html = df.to_html(
-#     index=False,
-#     classes="rankings-table",
-#     border=0
-# )
 
 updated = datetime.utcnow().strftime("%B %d, %Y")
 

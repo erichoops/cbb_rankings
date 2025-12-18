@@ -180,7 +180,7 @@ def generate_rankings():
 })
     merged_df = (
     merged_df
-        .sort_values(by='Score', ascending=False)
+        .sort_values(by='Score', ascending=True)
         .reset_index(drop=True)
 )
 
