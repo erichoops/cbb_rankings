@@ -104,7 +104,13 @@ def get_espn_sor():
     "Seton Hall Pirates": "Seton Hall",
     "Butler Bulldogs": "Butler",
     "Notre Dame Fighting Irish": "Notre Dame",
-    "George Mason Patriots": "George Mason"
+    "George Mason Patriots": "George Mason",
+    "Arizona State Sun Devils": "Arizona St.",
+    "California Golden Bears": "California",
+    "Miami (OH) RedHawks": "Miami OH",
+    "Tulsa Golden Hurricane": "Tulsa",
+    "UC San Diego Tritons": "UCSD",
+    "New Mexico Lobos": "New Mexico"
     }
 
     options = Options()
