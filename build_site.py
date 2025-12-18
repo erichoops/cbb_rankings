@@ -1,4 +1,5 @@
 from rankings import generate_rankings
+from datetime import datetime
 
 df = generate_rankings()
 
@@ -8,6 +9,8 @@ table_html = df.to_html(
     border=0
 )
 
+updated = datetime.utcnow().strftime("%B %d, %Y")
+
 html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,26 +18,68 @@ html = f"""<!DOCTYPE html>
     <title>Eric Hoops College Basketball Rankings</title>
     <style>
         body {{
-            font-family: Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background-color: #f7f7f7;
             margin: 40px;
         }}
-        table {{
+
+        h1 {{
+            text-align: center;
+            margin-bottom: 8px;
+        }}
+
+        .subtitle {{
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+        }}
+
+        .rankings-table {{
             border-collapse: collapse;
-            width: 100%;
+            margin: auto;
+            background: white;
+            width: 90%;
+            max-width: 1100px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            overflow: hidden;
         }}
-        th, td {{
-            border: 1px solid #ddd;
-            padding: 8px;
+
+        .rankings-table th,
+        .rankings-table td {{
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
         }}
-        th {{
-            background-color: #f4f4f4;
-            text-align: left;
+
+        .rankings-table th {{
+            background-color: #222;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85em;
+        }}
+
+        .rankings-table tr:nth-child(even) {{
+            background-color: #fafafa;
+        }}
+
+        .rankings-table tr:hover {{
+            background-color: #f0f6ff;
+        }}
+
+        .rankings-table td:first-child {{
+            font-weight: bold;
         }}
     </style>
 </head>
 <body>
     <h1>Eric Hoops College Basketball Rankings</h1>
-    {table_html}
+    <div class="subtitle">Updated {updated}</div>
+
+    <div style="overflow-x:auto;">
+        {table_html}
+    </div>
 </body>
 </html>
 """
