@@ -178,6 +178,9 @@ def generate_rankings():
     'sor_rank': 'Resume Rank',
     'Total': 'Score'
 })
+    merged_df.insert(0, 'Rank', range(len(merged_df)))
+
+    merged_df = merged_df[['Rank', 'Team', 'Predictive Rank', 'Resume Rank', 'Score']]
 
 # with pd.option_context('display.max_rows', None, 'display.max_columns', None):
     # display()
