@@ -1,6 +1,5 @@
 from rankings import generate_rankings
 from datetime import datetime
-import pandas as pd
 
 df = generate_rankings()
 
@@ -12,112 +11,115 @@ header_descriptions = {
     "Composite Rank": "Weighted average of all types"
 }
 
-# Replace headers in df.to_html with descriptions
+# Update column names to include <div class='column-desc'>
+new_columns = []
+for col in df.columns:
+    if col in header_descriptions:
+        new_columns.append(f"{col}<div class='column-desc'>{header_descriptions[col]}</div>")
+    else:
+        new_columns.append(col)
+
+df.columns = new_columns
+
+# Generate HTML
 table_html = df.to_html(
     index=False,
     classes="rankings-table",
-    border=0
+    border=0,
+    escape=False  # important! tells Pandas not to escape HTML
 )
-
-# Inject <div class="column-desc"> under each header
-for col, desc in header_descriptions.items():
-    # Replace the <th>Column</th> with <th>Column<div class="column-desc">desc</div></th>
-    table_html = table_html.replace(
-        f"<th>{col}</th>",
-        f"<th>{col}<div class='column-desc'>{desc}</div></th>"
-    )
 
 updated = datetime.utcnow().strftime("%B %d, %Y")
 
 html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Eric Hoops College Basketball Rankings</title>
-    <style>
-        body {{
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            background-color: #f7f7f7;
-            margin: 40px;
-        }}
+<meta charset="UTF-8">
+<title>Eric Hoops College Basketball Rankings</title>
+<style>
+    body {{
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        background-color: #f7f7f7;
+        margin: 40px;
+    }}
 
-        h1 {{
-            text-align: center;
-            margin-bottom: 8px;
-        }}
+    h1 {{
+        text-align: center;
+        margin-bottom: 8px;
+    }}
 
-        .subtitle {{
-            text-align: center;
-            color: #666;
-            margin-bottom: 20px;
-        }}
+    .subtitle {{
+        text-align: center;
+        color: #666;
+        margin-bottom: 20px;
+    }}
 
-        .table-wrapper {{
-            max-width: 1100px;
-            margin: auto;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }}
+    .table-wrapper {{
+        max-width: 1100px;
+        margin: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }}
 
-        .rankings-table {{
-            border-collapse: collapse;
-            width: 90%;
-            margin: auto;
-            background: white;
-        }}
+    .rankings-table {{
+        border-collapse: collapse;
+        width: 90%;
+        margin: auto;
+        background: white;
+    }}
 
-        .rankings-table th,
-        .rankings-table td {{
-            padding: 12px 16px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }}
+    .rankings-table th,
+    .rankings-table td {{
+        padding: 12px 16px;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }}
 
-        .rankings-table th {{
-            background-color: #1f3a5f;
-            color: white;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85em;
-        }}
+    .rankings-table th {{
+        background-color: #1f3a5f;
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85em;
+    }}
 
-        .column-desc {{
-            font-size: 0.65em;
-            color: #ddd;
-            margin-top: 2px;
-        }}
+    .column-desc {{
+        font-size: 0.65em;
+        color: #ddd;
+        margin-top: 2px;
+    }}
 
-        .rankings-table thead {{
-            display: table-header-group;
-        }}
+    .rankings-table thead {{
+        display: table-header-group;
+    }}
 
-        .rankings-table thead th {{
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background-color: #1f3a5f;
-        }}
+    .rankings-table thead th {{
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        background-color: #1f3a5f;
+    }}
 
-        .rankings-table tr:nth-child(even) {{
-            background-color: #fafafa;
-        }}
+    .rankings-table tr:nth-child(even) {{
+        background-color: #fafafa;
+    }}
 
-        .rankings-table tr:hover {{
-            background-color: #f0f6ff;
-        }}
+    .rankings-table tr:hover {{
+        background-color: #f0f6ff;
+    }}
 
-        .rankings-table td:first-child {{
-            font-weight: bold;
-        }}
-    </style>
+    .rankings-table td:first-child {{
+        font-weight: bold;
+    }}
+</style>
 </head>
 <body>
-    <h1>Eric Hoops College Basketball Rankings</h1>
-    <div class="subtitle">Updated {updated}</div>
+<h1>Eric Hoops College Basketball Rankings</h1>
+<div class="subtitle">Updated {updated}</div>
 
-    <div class="table-wrapper">
-        {table_html}
-    </div>
+<div class="table-wrapper">
+    {table_html}
+</div>
 </body>
 </html>
 """
