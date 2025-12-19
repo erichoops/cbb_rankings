@@ -104,10 +104,10 @@ def generate_rankings():
     # df['cumulative_score'] = round(((365 - df['score'])/3.64),1)
     df['rank'] = df['combined_avg'].rank(ascending=True, method = 'first').astype(int)
     df['team'] = df['team'].str.replace('\d+', '', regex=True)
-    cols = ['team', 'resume_metric_avg', 'predictive_metric_avg', 'recency_rank', 'combined_avg', 'rank']
+    cols = ['rank', 'team', 'resume_metric_avg', 'predictive_metric_avg', 'recency_rank', 'combined_avg']
     df = df[cols]
 
 # with pd.option_context('display.max_rows', None, 'display.max_columns', None):
-    df = df.sort_values(by=['combined_avg'], ascending=True).set_index(df.index.astype(int) + 1)
+    df = df.sort_values(by=['rank'], ascending=True).set_index(df.index.astype(int) + 1)
 
     return df
