@@ -54,7 +54,7 @@ html = f"""<!DOCTYPE html>
         }}
 
         .rankings-table th {{
-            background-color: #222;
+            background-color: #1f3a5f;
             color: white;
             font-weight: 600;
             text-transform: uppercase;
