@@ -1,13 +1,31 @@
 from rankings import generate_rankings
 from datetime import datetime
+import pandas as pd
 
 df = generate_rankings()
 
+# Define inline descriptions for headers
+header_descriptions = {
+    "Resume Rank": "Wins, losses, strength of schedule",
+    "Predictive Rank": "Margins matter more than W/L",
+    "Recency Rank": "Last 2 weeks performance",
+    "Composite Rank": "Weighted average of all types"
+}
+
+# Replace headers in df.to_html with descriptions
 table_html = df.to_html(
     index=False,
     classes="rankings-table",
     border=0
 )
+
+# Inject <div class="column-desc"> under each header
+for col, desc in header_descriptions.items():
+    # Replace the <th>Column</th> with <th>Column<div class="column-desc">desc</div></th>
+    table_html = table_html.replace(
+        f"<th>{col}</th>",
+        f"<th>{col}<div class='column-desc'>{desc}</div></th>"
+    )
 
 updated = datetime.utcnow().strftime("%B %d, %Y")
 
@@ -34,37 +52,17 @@ html = f"""<!DOCTYPE html>
             margin-bottom: 20px;
         }}
 
-        .legend {{
-            max-width: 700px;
-            margin: 0 auto 24px;
-            background: #fff;
-            padding: 10px 14px;
-            border-radius: 8px;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-            font-size: 0.85em;
-        }}
-
-        .legend ul {{
-            margin: 10px 0 0;
-            padding-left: 20px;
-        }}
-
-        .legend li {{
-            margin-bottom: 6px;
-        }}
-
-        /* Wrapper for table styling */
         .table-wrapper {{
             max-width: 1100px;
             margin: auto;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            overflow-x: auto; /* horizontal scroll if table is wide */
         }}
 
         .rankings-table {{
             border-collapse: collapse;
-            width: 100%;
+            width: 90%;
+            margin: auto;
             background: white;
         }}
 
@@ -83,14 +81,19 @@ html = f"""<!DOCTYPE html>
             font-size: 0.85em;
         }}
 
-        /* Ensure sticky header works */
+        .column-desc {{
+            font-size: 0.65em;
+            color: #ddd;
+            margin-top: 2px;
+        }}
+
         .rankings-table thead {{
-            display: table-header-group; /* important for sticky */
+            display: table-header-group;
         }}
 
         .rankings-table thead th {{
             position: sticky;
-            top: 0; /* sticks to top of viewport */
+            top: 0;
             z-index: 1000;
             background-color: #1f3a5f;
         }}
@@ -111,16 +114,6 @@ html = f"""<!DOCTYPE html>
 <body>
     <h1>Eric Hoops College Basketball Rankings</h1>
     <div class="subtitle">Updated {updated}</div>
-
-    # <div class="legend">
-    #     <strong>Ranking Types</strong>
-    #     <ul>
-    #         <li><strong>Resume Rank</strong> — Wins, losses and strength of schedule</li>
-    #         <li><strong>Predictive Rank</strong> — Win and loss margins matter more than W/L</li>
-    #         <li><strong>Recency Rank</strong> — Performance in the last 2 weeks</li>
-    #         <li><strong>Composite Rank</strong> — Weighted average of all ranking types</li>
-    #     </ul>
-    # </div>
 
     <div class="table-wrapper">
         {table_html}
