@@ -40,14 +40,19 @@
             margin-bottom: 6px;
         }
 
+        /* Wrapper for table to preserve rounded corners and shadow */
+        .table-wrapper {
+            max-width: 1100px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            overflow-x: auto; /* allows horizontal scroll for wide tables */
+        }
+
         .rankings-table {
             border-collapse: collapse;
-            margin: auto;
+            width: 100%;
             background: white;
-            width: 90%;
-            max-width: 1100px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border-radius: 8px;
         }
 
         .rankings-table th,
@@ -68,9 +73,9 @@
         /* Sticky header */
         .rankings-table thead th {
             position: sticky;
-            top: 0;  /* sticks to top of viewport */
+            top: 0;
             z-index: 1000;
-            background-color: #1f3a5f; /* required for sticky */
+            background-color: #1f3a5f;
         }
 
         .rankings-table tr:nth-child(even) {
@@ -100,7 +105,8 @@
         </ul>
     </div>
 
-    <table class="dataframe rankings-table">
+    <div class="table-wrapper">
+        <table class="dataframe rankings-table">
   <thead>
     <tr style="text-align: right;">
       <th>rank</th>
@@ -3034,6 +3040,6 @@
     </tr>
   </tbody>
 </table>
-
+    </div>
 </body>
 </html>
