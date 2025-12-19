@@ -62,11 +62,15 @@ html = f"""<!DOCTYPE html>
         }}
 
         .rankings-table thead th {{
-        position: sticky;
-        top: 0;
-        z-index: 2;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }}
+    position: sticky;
+    top: 140px;  /* adjust based on legend + subtitle height */
+    z-index: 2;
+    background-color: #1f3a5f;
+    color: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}}
+  
+
 
 
 
@@ -82,14 +86,16 @@ html = f"""<!DOCTYPE html>
             font-weight: bold;
         }}
         .legend {{
-        max-width: 1100px;
-        margin: 0 auto 24px;
-        background: white;
-        padding: 16px 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        font-size: 0.95em;
-        }}
+    max-width: 700px;
+    margin: 0 auto 24px;
+    background: #fff;
+    padding: 10px 14px;  /* slightly smaller padding */
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);  /* lighter shadow */
+    font-size: 0.85em;
+}}
+
+
 
         .legend ul {{
             margin: 10px 0 0;
@@ -116,16 +122,13 @@ html = f"""<!DOCTYPE html>
     <div class="legend">
     <strong>Ranking Types</strong>
     <ul>
-        <li><strong>Resume Rank</strong> — Wins, losses and strength of schedule)</li>
+        <li><strong>Resume Rank</strong> — Wins, losses and strength of schedule</li>
         <li><strong>Predictive Rank</strong> — Win and loss margins matter more than W/L </li>
         <li><strong>Recency Rank</strong> — Performance in the last 2 weeks</li>
         <li><strong>Composite Rank</strong> — Weighted average of all ranking types</li>
         </ul>
     </div>
-
-    <div style="overflow:auto; max-height: 75vh;">
         {table_html}
-    </div>
 </body>
 </html>
 """
