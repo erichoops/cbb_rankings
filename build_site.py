@@ -53,13 +53,13 @@ html = f"""<!DOCTYPE html>
             margin-bottom: 6px;
         }}
 
-        /* Wrapper for table to preserve rounded corners and shadow */
+        /* Wrapper for table styling */
         .table-wrapper {{
             max-width: 1100px;
             margin: auto;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            overflow-x: auto; /* allows horizontal scroll for wide tables */
+            overflow-x: auto; /* horizontal scroll if table is wide */
         }}
 
         .rankings-table {{
@@ -83,10 +83,14 @@ html = f"""<!DOCTYPE html>
             font-size: 0.85em;
         }}
 
-        /* Sticky header */
+        /* Ensure sticky header works */
+        .rankings-table thead {{
+            display: table-header-group; /* important for sticky */
+        }}
+
         .rankings-table thead th {{
             position: sticky;
-            top: 0;
+            top: 0; /* sticks to top of viewport */
             z-index: 1000;
             background-color: #1f3a5f;
         }}
@@ -108,15 +112,15 @@ html = f"""<!DOCTYPE html>
     <h1>Eric Hoops College Basketball Rankings</h1>
     <div class="subtitle">Updated {updated}</div>
 
-    <div class="legend">
-        <strong>Ranking Types</strong>
-        <ul>
-            <li><strong>Resume Rank</strong> — Wins, losses and strength of schedule</li>
-            <li><strong>Predictive Rank</strong> — Win and loss margins matter more than W/L</li>
-            <li><strong>Recency Rank</strong> — Performance in the last 2 weeks</li>
-            <li><strong>Composite Rank</strong> — Weighted average of all ranking types</li>
-        </ul>
-    </div>
+    # <div class="legend">
+    #     <strong>Ranking Types</strong>
+    #     <ul>
+    #         <li><strong>Resume Rank</strong> — Wins, losses and strength of schedule</li>
+    #         <li><strong>Predictive Rank</strong> — Win and loss margins matter more than W/L</li>
+    #         <li><strong>Recency Rank</strong> — Performance in the last 2 weeks</li>
+    #         <li><strong>Composite Rank</strong> — Weighted average of all ranking types</li>
+    #     </ul>
+    # </div>
 
     <div class="table-wrapper">
         {table_html}
