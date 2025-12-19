@@ -63,12 +63,12 @@ html = f"""<!DOCTYPE html>
 
         .rankings-table thead th {{
     position: sticky;
-    top: 140px;  /* adjust based on legend + subtitle height */
-    z-index: 2;
-    background-color: #1f3a5f;
+    top: 0; /* stick to the top of the viewport */
+    z-index: 10; /* above everything else */
+    background-color: #1f3a5f; /* must set background for sticky */
     color: white;
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}}
+        }}
   
 
 
