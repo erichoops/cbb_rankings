@@ -61,6 +61,15 @@ html = f"""<!DOCTYPE html>
             font-size: 0.85em;
         }}
 
+        .rankings-table thead th {{
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    }}
+
+
+
         .rankings-table tr:nth-child(even) {{
             background-color: #fafafa;
         }}
@@ -72,13 +81,49 @@ html = f"""<!DOCTYPE html>
         .rankings-table td:first-child {{
             font-weight: bold;
         }}
+        .legend {{
+        max-width: 1100px;
+        margin: 0 auto 24px;
+        background: white;
+        padding: 16px 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        font-size: 0.95em;
+        }}
+
+        .legend ul {{
+            margin: 10px 0 0;
+            padding-left: 20px;
+        }}
+
+        .legend li {{
+            margin-bottom: 6px;
+        }}
+
+        .legend-note {{
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 12px;
+        }}
+
     </style>
 </head>
 <body>
     <h1>Eric Hoops College Basketball Rankings</h1>
     <div class="subtitle">Updated {updated}</div>
 
-    <div style="overflow-x:auto;">
+    <div class="legend">
+    <strong>Ranking Types</strong>
+    <ul>
+        <li><strong>Resume Rank</strong> — Wins, losses and strength of schedule)</li>
+        <li><strong>Predictive Rank</strong> — Win and loss margins matter more than W/L </li>
+        <li><strong>Recency Rank</strong> — Performance in the last 2 weeks</li>
+        <li><strong>Composite Rank</strong> — Weighted average of all ranking types</li>
+        </ul>
+    </div>
+
+    <div style="overflow:auto; max-height: 75vh;">
         {table_html}
     </div>
 </body>

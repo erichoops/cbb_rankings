@@ -107,6 +107,13 @@ def generate_rankings():
     cols = ['rank', 'team', 'resume_metric_avg', 'predictive_metric_avg', 'recency_rank', 'combined_avg']
     df = df[cols]
 
+    df = df.rename(columns={
+    'resume_metric_avg': 'resume rank',
+    'predictive_metric_avg': 'predictive rank',
+    'recency_rank': 'recency rank',
+    'combined_avg': 'composite rank'
+})
+
 # with pd.option_context('display.max_rows', None, 'display.max_columns', None):
     df = df.sort_values(by=['rank'], ascending=True).set_index(df.index.astype(int) + 1)
 
