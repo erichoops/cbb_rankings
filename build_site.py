@@ -61,7 +61,6 @@ html = f"""<!DOCTYPE html>
             max-width: 1100px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             border-radius: 8px;
-            overflow: hidden;
         }}
 
         .rankings-table th,
