@@ -78,8 +78,8 @@ def generate_rankings():
     df.columns = cols.where(~cols.duplicated(), cols + '_' + cols.groupby(cols).cumcount().astype(str))
 
     resume_weight = .5
-    predictive_weight = .45
-    recency_weight = .05
+    predictive_weight = .4
+    recency_weight = .1
 
     df = pd.DataFrame(df, columns = ['Team', 'Avg', 'Avg_1'])
     df = df.rename(columns={'Team':'team', 'Avg': 'resume_metric_avg', 'Avg_1':'predictive_metric_avg'})
