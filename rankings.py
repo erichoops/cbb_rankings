@@ -63,6 +63,9 @@ def generate_rankings():
 
     df.columns = ["team", "resume_metric_avg", "predictive_metric_avg"]
 
+    df["resume_metric_avg"] = round(df["resume_metric_avg"].astype(float),1)
+    df["predictive_metric_avg"] = round(df["predictive_metric_avg"].astype(float),1)
+
 
 
  
