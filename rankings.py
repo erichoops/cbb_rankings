@@ -102,7 +102,8 @@ def generate_rankings():
     # df['combined_avg'] = round(((df['resume_metric_avg'].astype(float) + df['predictive_metric_avg'].astype(float))/2),1)
     df['combined_avg'] = round(((df['resume_metric_avg'].astype(float)/(1/resume_weight) + df['predictive_metric_avg'].astype(float)/(1/predictive_weight) + df['recency_rank'].astype(float)/(1/recency_weight))),1)
     # df['cumulative_score'] = round(((365 - df['score'])/3.64),1)
-    df['rank'] = df['combined_avg'].rank(ascending=True, method = 'first')
+    df = df.dropna(subset=["rank"])
+    df['rank'] = df['combined_avg'].rank(ascending=True, method = 'first').astype(int)
     df['team'] = df['team'].str.replace('\d+', '', regex=True)
     cols = ['rank', 'team', 'resume_metric_avg', 'predictive_metric_avg', 'recency_rank', 'combined_avg']
     df = df[cols]
