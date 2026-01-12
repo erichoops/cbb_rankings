@@ -52,57 +52,54 @@ def generate_rankings():
 
     df_filtered
 
-    url = 'https://barttorvik.com/teamsheets.php?sort=9&conlimit=All&year=2026'
-    driver = webdriver.Chrome()
-    driver.get(url)
-    time.sleep(2)
-    html = driver.page_source
-    soup = BeautifulSoup(html, 'html.parser')
-    table = soup.find('table')
+    torvik_download = 'https://barttorvik.com/2026_teamsheets.json'
 
-    headers = ['Rk', 'Team', 'NET', 'KPI', 'SOR', 'WAB', 'Avg', 'BPI', 'KP', 'TRK', 'Avg', 'Q1A', 'Q1', 'Q2', 'Q1&2', 'Q3', 'Q4',]
+    resp = req.get(torvik_download)
 
-    # Some undesired rows are in the table
-    # Ensure row has the same length as headers
-    rows = []
-    for tr in table.find_all('tr')[1:]:  # Skip header row
-        cells = [td.text.strip() for td in tr.find_all('td')]
-        if len(cells) == 17 and len(headers) == 17:
-            rows.append(cells)
+    data = resp.json()     
+    df = pd.DataFrame(data[0])
+
+    df = df.drop(columns=[1, 2,3,5,6,7,9])
+
+    df.columns = ["team", "resume_metric_avg", "predictive_metric_avg"]
+
+
+
+ 
 
     # Create a DataFrame
-    df = pd.DataFrame(rows, columns=headers)
+    # df = pd.DataFrame(rows, columns=headers)
     # Two columns named 'Avg'
     # Detect and rename duplicate columns
-    cols = pd.Series(df.columns)
-    df.columns = cols.where(~cols.duplicated(), cols + '_' + cols.groupby(cols).cumcount().astype(str))
+    # cols = pd.Series(df.columns)
+    # df.columns = cols.where(~cols.duplicated(), cols + '_' + cols.groupby(cols).cumcount().astype(str))
 
     resume_weight = .5
     predictive_weight = .4
     recency_weight = .1
 
-    df = pd.DataFrame(df, columns = ['Team', 'Avg', 'Avg_1'])
-    df = df.rename(columns={'Team':'team', 'Avg': 'resume_metric_avg', 'Avg_1':'predictive_metric_avg'})
-    df["team"] = df["team"].apply(lambda x: re.sub(r"\d+", "", x).strip())
-    df["team"] = df["team"].str.replace(r"\b(FO|NO)\b", "", regex=True).str.strip()
+    # df = pd.DataFrame(df, columns = ['Team', 'Avg', 'Avg_1'])
+    # df = df.rename(columns={'Team':'team', 'Avg': 'resume_metric_avg', 'Avg_1':'predictive_metric_avg'})
+    # df["team"] = df["team"].apply(lambda x: re.sub(r"\d+", "", x).strip())
+    # df["team"] = df["team"].str.replace(r"\b(FO|NO)\b", "", regex=True).str.strip()
     recency_df = df_filtered
-    df["team"] = df["team"].str.strip()
-    recency_df = recency_df.dropna(subset=["team"])
-    recency_df["team"] = recency_df["team"].apply(lambda x: x.split("\xa0")[0])
+    # df["team"] = df["team"].str.strip()
+    # recency_df = recency_df.dropna(subset=["team"])
+    # recency_df["team"] = recency_df["team"].apply(lambda x: x.split("\xa0")[0])
     df = pd.merge(df, recency_df, on="team", how ="outer")
-    df['resume_score'] = round(((365 - df['resume_metric_avg'].astype(float))/3.64),1)
-    df['resume_rank'] = df['resume_score'].rank(ascending=False).astype(int)
-    df['predictive_score'] = round(((365 - df['predictive_metric_avg'].astype(float))/3.64),1)
-    df['predictive_rank'] = df['predictive_score'].rank(ascending=False).astype(int)
+    # df['resume_score'] = round(((365 - df['resume_metric_avg'].astype(float))/3.64),1)
+    # df['resume_rank'] = df['resume_score'].rank(ascending=False).astype(int)
+    # df['predictive_score'] = round(((365 - df['predictive_metric_avg'].astype(float))/3.64),1)
+    # df['predictive_rank'] = df['predictive_score'].rank(ascending=False).astype(int)
     # df['cumulative_score'] = round(((df['resume_score'].astype(float) + df['predictive_score'].astype(float))/2),1)
     df['cumulative_score'] = round(((df['resume_metric_avg'].astype(float) + df['predictive_metric_avg'].astype(float))/2),1)
-    df = df.sort_values(by = 'resume_rank').reset_index()
-    df['rank'] = df['cumulative_score'].rank(ascending=True, method = 'first').astype(int)
+    # df = df.sort_values(by = 'resume_rank').reset_index()
+    df['rank'] = df['cumulative_score'].rank(ascending=True, method = 'first')
     df['recency_rank'] =df['recency_rank'].fillna(365).astype(int)
     # df['combined_avg'] = round(((df['resume_metric_avg'].astype(float) + df['predictive_metric_avg'].astype(float))/2),1)
     df['combined_avg'] = round(((df['resume_metric_avg'].astype(float)/(1/resume_weight) + df['predictive_metric_avg'].astype(float)/(1/predictive_weight) + df['recency_rank'].astype(float)/(1/recency_weight))),1)
     # df['cumulative_score'] = round(((365 - df['score'])/3.64),1)
-    df['rank'] = df['combined_avg'].rank(ascending=True, method = 'first').astype(int)
+    df['rank'] = df['combined_avg'].rank(ascending=True, method = 'first')
     df['team'] = df['team'].str.replace('\d+', '', regex=True)
     cols = ['rank', 'team', 'resume_metric_avg', 'predictive_metric_avg', 'recency_rank', 'combined_avg']
     df = df[cols]
