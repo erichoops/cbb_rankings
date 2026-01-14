@@ -2,7 +2,7 @@ name: Update rankings daily
 
 on:
   schedule:
-    - cron: '0 10 * * *'   # once per day (UTC)
+    - cron: '0 15 * * *'   # once per day (UTC)
   workflow_dispatch:
 
 jobs:
