@@ -126,10 +126,10 @@ html = f"""<!DOCTYPE html>
 </head>
 <body>
 <h1>Eric Hoops College Basketball Rankings</h1>
-<div class="subtitle">Updated {{updated}}</div>
+<div class="subtitle">Updated {updated}</div>
 
 <div class="table-wrapper">
-    {{table_html}}
+    {table_html}
 </div>
 <script>
 document.addEventListener("DOMContentLoaded", function () 
