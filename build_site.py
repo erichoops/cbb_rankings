@@ -83,6 +83,15 @@ html = f"""<!DOCTYPE html>
         font-size: 0.85em;
     }}
 
+    .dataTables_wrapper .dataTables_sort_icon {{
+        display: none;
+    }}
+
+    .rankings-table th {{
+        cursor: pointer;
+    }}
+
+
     .column-desc {{
         font-size: 0.65em;
         color: #ddd;
@@ -112,14 +121,26 @@ html = f"""<!DOCTYPE html>
         font-weight: bold;
     }}
 </style>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.dataTables.min.css">
+<script src="https://cdn.datatables.net/1.13.8/js/dataTables.min.js"></script>
 </head>
 <body>
 <h1>Eric Hoops College Basketball Rankings</h1>
-<div class="subtitle">Updated {updated}</div>
+<div class="subtitle">Updated {{updated}}</div>
 
 <div class="table-wrapper">
-    {table_html}
+    {{table_html}}
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () 
+{{ new DataTable('.rankings-table', {{
+    paging: false,
+    info: false,
+    searching: false
+}});
+}});
+</script>
+
 </body>
 </html>
 """
