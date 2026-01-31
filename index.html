@@ -48,16 +48,8 @@
         font-weight: 600;
         text-transform: uppercase;
         font-size: 0.85em;
-    }
-
-    .dataTables_wrapper .dataTables_sort_icon {
-        display: none;
-    }
-
-    .rankings-table th {
         cursor: pointer;
     }
-
 
     .column-desc {
         font-size: 0.65em;
@@ -2665,13 +2657,14 @@
   </tbody>
 </table>
 </div>
+
 <script>
-document.addEventListener("DOMContentLoaded", function () 
-{ new DataTable('.rankings-table', {
-    paging: false,
-    info: false,
-    searching: false
-});
+document.addEventListener("DOMContentLoaded", function () {
+    new DataTable('.rankings-table', {
+        paging: false,
+        info: false,
+        searching: false
+    });
 });
 </script>
 
