@@ -132,7 +132,6 @@ $(document).ready(function() {{
         paging: false,
         info: false,
         searching: false,
-        order: [],
         columnDefs: [{{
             targets: '_all',
             orderSequence: ["asc","desc"]
