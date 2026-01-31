@@ -115,6 +115,7 @@ html = f"""<!DOCTYPE html>
     }}
 </style>
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.8/js/dataTables.min.js"></script>
 </head>
 <body>
@@ -126,11 +127,16 @@ html = f"""<!DOCTYPE html>
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {{
-    new DataTable('.rankings-table', {{
+$(document).ready(function() {{
+    $('.rankings-table').DataTable({{
         paging: false,
         info: false,
-        searching: false
+        searching: false,
+        order: [],
+        columnDefs: [{{
+            targets: '_all',
+            orderSequence: ["asc","desc"]
+        }}]
     }});
 }});
 </script>
