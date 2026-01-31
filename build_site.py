@@ -31,6 +31,7 @@ table_html = df.to_html(
 
 updated = datetime.utcnow().strftime("%B %d, %Y")
 
+# Corrected f-string with proper JS braces
 html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,16 +82,8 @@ html = f"""<!DOCTYPE html>
         font-weight: 600;
         text-transform: uppercase;
         font-size: 0.85em;
-    }}
-
-    .dataTables_wrapper .dataTables_sort_icon {{
-        display: none;
-    }}
-
-    .rankings-table th {{
         cursor: pointer;
     }}
-
 
     .column-desc {{
         font-size: 0.65em;
@@ -131,13 +124,14 @@ html = f"""<!DOCTYPE html>
 <div class="table-wrapper">
     {table_html}
 </div>
+
 <script>
-document.addEventListener("DOMContentLoaded", function () 
-{{ new DataTable('.rankings-table', {{
-    paging: false,
-    info: false,
-    searching: false
-}});
+document.addEventListener("DOMContentLoaded", function () {{
+    new DataTable('.rankings-table', {{
+        paging: false,
+        info: false,
+        searching: false
+    }});
 }});
 </script>
 
