@@ -8,11 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
 
 <style>
+/* Page background and base text */
 body {
-    background-color: #2e3743;  /* darker background */
-    color: #1f2937;
+    background-color: #2e3743;  /* dark page background */
+    color: #f9fafb;
     font-family: "Segoe UI", Roboto, Helvetica, sans-serif;
     margin: 40px;
+}
+
+/* Dashboard header */
+.dashboard-header {
+    max-width: 1100px;
+    margin: 0 auto 1rem auto;
 }
 
 .dashboard-header h1 {
@@ -20,9 +27,10 @@ body {
     font-weight: 600;
     font-size: 2rem;
     margin-bottom: 0.5rem;
-    color: #f9fafb;  /* white-ish for contrast */
+    color: #f9fafb;  /* white-ish header text */
 }
 
+/* Methodology card */
 .purpose-card {
     margin-top: 1rem;
     padding: 1rem 1.25rem;
@@ -49,6 +57,7 @@ body {
     line-height: 1.5;
 }
 
+/* Subtitle / Updated date */
 .subtitle {
     font-size: 0.85rem;
     color: #374151;
@@ -56,31 +65,35 @@ body {
     text-align: left;
 }
 
+/* Table wrapper */
 .table-wrapper {
     max-width: 1100px;
     margin: 0 auto;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    background-color: #f9fafb;   /* light table wrapper */
-    padding: 0.25rem;
+    background-color: #d1d5db;  /* medium-light gray */
+    overflow-x: auto;           /* allow horizontal scroll if table too wide */
+    padding: 0;                 /* remove wrapper padding */
 }
 
+/* Table styles */
 .rankings-table {
     border-collapse: collapse;
-    width: 100%;
-    background: #f9fafb;          /* table light */
+    width: 100%;                /* table spans wrapper */
+    background: #e5e7eb;        /* slightly lighter gray than wrapper */
     color: #1f2937;
+    table-layout: auto;          /* auto column sizing */
 }
 
 .rankings-table th,
 .rankings-table td {
     padding: 12px 16px;
-    text-align: center;           /* centered data & headers */
-    border-bottom: 1px solid #e5e7eb;
+    text-align: center;          /* center headers and data */
+    border-bottom: 1px solid #cbd5e1;
 }
 
 .rankings-table th {
-    background-color: #e5e7eb;    /* slightly darker header */
+    background-color: #d6d8db;   /* slightly darker than table */
     color: #1f2937;
     font-weight: 600;
     text-transform: uppercase;
@@ -97,21 +110,29 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #e5e7eb;
+    background-color: #d6d8db;
 }
 
 .rankings-table tr:nth-child(even) {
-    background-color: #f3f4f6;   /* subtle alternating row */
+    background-color: #eceff1;   /* subtle alternating rows */
 }
 
 .rankings-table tr:hover {
-    background-color: #e5e7eb;
+    background-color: #d6d8db;
 }
 
 .rankings-table td:first-child {
     font-weight: bold;
 }
 
+/* Responsive adjustment for small screens */
+@media (max-width: 768px) {
+    .rankings-table th,
+    .rankings-table td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+}
 </style>
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.dataTables.min.css">
@@ -2718,7 +2739,7 @@ $(document).ready(function() {
             targets: '_all',
             orderSequence: ["asc","desc"]
         }]
-    });
+    } );
 });
 </script>
 
