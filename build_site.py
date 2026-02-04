@@ -26,101 +26,149 @@ table_html = df.to_html(
     index=False,
     classes="rankings-table",
     border=0,
-    escape=False  # important! tells Pandas not to escape HTML
+    escape=False
 )
 
 updated = datetime.utcnow().strftime("%B %d, %Y")
 
-# Corrected f-string with proper JS braces
 html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Eric Hoops College Basketball Rankings</title>
+
+<!-- Google Font for header -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+
 <style>
-    body {{
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-        background-color: #f7f7f7;
-        margin: 40px;
-    }}
+body {{
+    background-color: #2e3743;  /* darker background */
+    color: #1f2937;
+    font-family: "Segoe UI", Roboto, Helvetica, sans-serif;
+    margin: 40px;
+}}
 
-    h1 {{
-        text-align: center;
-        margin-bottom: 8px;
-    }}
+.dashboard-header h1 {{
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #f9fafb;  /* white-ish for contrast */
+}}
 
-    .subtitle {{
-        text-align: center;
-        color: #666;
-        margin-bottom: 20px;
-    }}
+.purpose-card {{
+    margin-top: 1rem;
+    padding: 1rem 1.25rem;
+    background: #ffffff;        /* light card */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 900px;
+    border-left: 4px solid #3b82f6;
+}}
 
-    .table-wrapper {{
-        max-width: 1100px;
-        margin: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }}
+.purpose-card strong {{
+    display: block;
+    font-size: 0.9rem;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}}
 
-    .rankings-table {{
-        border-collapse: collapse;
-        width: 90%;
-        margin: auto;
-        background: white;
-    }}
+.purpose-card p {{
+    margin: 0;
+    font-size: 0.95rem;
+    color: #374151;
+    line-height: 1.5;
+}}
 
-    .rankings-table th,
-    .rankings-table td {{
-        padding: 12px 16px;
-        text-align: center;
-        border-bottom: 1px solid #eee;
-    }}
+.subtitle {{
+    font-size: 0.85rem;
+    color: #374151;
+    margin-top: 0.25rem;
+    text-align: left;
+}}
 
-    .rankings-table th {{
-        background-color: #1f3a5f;
-        color: white;
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.85em;
-        cursor: pointer;
-    }}
+.table-wrapper {{
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: #f9fafb;   /* light table wrapper */
+    padding: 0.25rem;
+}}
 
-    .column-desc {{
-        font-size: 0.65em;
-        color: #ddd;
-        margin-top: 2px;
-    }}
+.rankings-table {{
+    border-collapse: collapse;
+    width: 100%;
+    background: #f9fafb;          /* table light */
+    color: #1f2937;
+}}
 
-    .rankings-table thead {{
-        display: table-header-group;
-    }}
+.rankings-table th,
+.rankings-table td {{
+    padding: 12px 16px;
+    text-align: center;           /* centered data & headers */
+    border-bottom: 1px solid #e5e7eb;
+}}
 
-    .rankings-table thead th {{
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        background-color: #1f3a5f;
-    }}
+.rankings-table th {{
+    background-color: #e5e7eb;    /* slightly darker header */
+    color: #1f2937;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85em;
+}}
 
-    .rankings-table tr:nth-child(even) {{
-        background-color: #fafafa;
-    }}
+.column-desc {{
+    font-size: 0.65em;
+    color: #6b7280;
+    margin-top: 2px;
+}}
 
-    .rankings-table tr:hover {{
-        background-color: #f0f6ff;
-    }}
+.rankings-table thead th {{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #e5e7eb;
+}}
 
-    .rankings-table td:first-child {{
-        font-weight: bold;
-    }}
+.rankings-table tr:nth-child(even) {{
+    background-color: #f3f4f6;   /* subtle alternating row */
+}}
+
+.rankings-table tr:hover {{
+    background-color: #e5e7eb;
+}}
+
+.rankings-table td:first-child {{
+    font-weight: bold;
+}}
+
 </style>
+
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.8/js/dataTables.min.js"></script>
+
 </head>
+
 <body>
-<h1>Eric Hoops College Basketball Rankings</h1>
-<div class="subtitle">Updated {updated}</div>
+
+<div class="dashboard-header">
+    <h1>Eric Hoops College Basketball Rankings</h1>
+
+    <div class="purpose-card">
+        <strong>Methodology</strong>
+        <p>
+            These rankings combine resume-based metrics (what teams have accomplished)
+            with predictive metrics (how strong they appear) to strike a balance between
+            results and true team quality.
+        </p>
+    </div>
+
+    <div class="subtitle">Updated {updated}</div>
+</div>
 
 <div class="table-wrapper">
     {table_html}

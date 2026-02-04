@@ -3,90 +3,139 @@
 <head>
 <meta charset="UTF-8">
 <title>Eric Hoops College Basketball Rankings</title>
+
+<!-- Google Font for header -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+
 <style>
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-        background-color: #f7f7f7;
-        margin: 40px;
-    }
+body {
+    background-color: #2e3743;  /* darker background */
+    color: #1f2937;
+    font-family: "Segoe UI", Roboto, Helvetica, sans-serif;
+    margin: 40px;
+}
 
-    h1 {
-        text-align: center;
-        margin-bottom: 8px;
-    }
+.dashboard-header h1 {
+    font-family: "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #f9fafb;  /* white-ish for contrast */
+}
 
-    .subtitle {
-        text-align: center;
-        color: #666;
-        margin-bottom: 20px;
-    }
+.purpose-card {
+    margin-top: 1rem;
+    padding: 1rem 1.25rem;
+    background: #ffffff;        /* light card */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    max-width: 900px;
+    border-left: 4px solid #3b82f6;
+}
 
-    .table-wrapper {
-        max-width: 1100px;
-        margin: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    }
+.purpose-card strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
 
-    .rankings-table {
-        border-collapse: collapse;
-        width: 90%;
-        margin: auto;
-        background: white;
-    }
+.purpose-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #374151;
+    line-height: 1.5;
+}
 
-    .rankings-table th,
-    .rankings-table td {
-        padding: 12px 16px;
-        text-align: center;
-        border-bottom: 1px solid #eee;
-    }
+.subtitle {
+    font-size: 0.85rem;
+    color: #374151;
+    margin-top: 0.25rem;
+    text-align: left;
+}
 
-    .rankings-table th {
-        background-color: #1f3a5f;
-        color: white;
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.85em;
-        cursor: pointer;
-    }
+.table-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    background-color: #f9fafb;   /* light table wrapper */
+    padding: 0.25rem;
+}
 
-    .column-desc {
-        font-size: 0.65em;
-        color: #ddd;
-        margin-top: 2px;
-    }
+.rankings-table {
+    border-collapse: collapse;
+    width: 100%;
+    background: #f9fafb;          /* table light */
+    color: #1f2937;
+}
 
-    .rankings-table thead {
-        display: table-header-group;
-    }
+.rankings-table th,
+.rankings-table td {
+    padding: 12px 16px;
+    text-align: center;           /* centered data & headers */
+    border-bottom: 1px solid #e5e7eb;
+}
 
-    .rankings-table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
-        background-color: #1f3a5f;
-    }
+.rankings-table th {
+    background-color: #e5e7eb;    /* slightly darker header */
+    color: #1f2937;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85em;
+}
 
-    .rankings-table tr:nth-child(even) {
-        background-color: #fafafa;
-    }
+.column-desc {
+    font-size: 0.65em;
+    color: #6b7280;
+    margin-top: 2px;
+}
 
-    .rankings-table tr:hover {
-        background-color: #f0f6ff;
-    }
+.rankings-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #e5e7eb;
+}
 
-    .rankings-table td:first-child {
-        font-weight: bold;
-    }
+.rankings-table tr:nth-child(even) {
+    background-color: #f3f4f6;   /* subtle alternating row */
+}
+
+.rankings-table tr:hover {
+    background-color: #e5e7eb;
+}
+
+.rankings-table td:first-child {
+    font-weight: bold;
+}
+
 </style>
+
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.dataTables.min.css">
 <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.8/js/dataTables.min.js"></script>
+
 </head>
+
 <body>
-<h1>Eric Hoops College Basketball Rankings</h1>
-<div class="subtitle">Updated February 03, 2026</div>
+
+<div class="dashboard-header">
+    <h1>Eric Hoops College Basketball Rankings</h1>
+
+    <div class="purpose-card">
+        <strong>Methodology</strong>
+        <p>
+            These rankings combine resume-based metrics (what teams have accomplished)
+            with predictive metrics (how strong they appear) to strike a balance between
+            results and true team quality.
+        </p>
+    </div>
+
+    <div class="subtitle">Updated February 04, 2026</div>
+</div>
 
 <div class="table-wrapper">
     <table class="dataframe rankings-table">
@@ -125,15 +174,15 @@
       <td>4</td>
       <td>Connecticut</td>
       <td>3.3</td>
-      <td>9.3</td>
-      <td>5.7</td>
+      <td>8.7</td>
+      <td>5.5</td>
     </tr>
     <tr>
       <td>5</td>
       <td>Illinois</td>
       <td>6.0</td>
-      <td>7.0</td>
-      <td>6.4</td>
+      <td>7.3</td>
+      <td>6.5</td>
     </tr>
     <tr>
       <td>6</td>
@@ -160,8 +209,8 @@
       <td>9</td>
       <td>Nebraska</td>
       <td>6.3</td>
-      <td>14.3</td>
-      <td>9.5</td>
+      <td>14.7</td>
+      <td>9.7</td>
     </tr>
     <tr>
       <td>10</td>
@@ -174,8 +223,8 @@
       <td>11</td>
       <td>Michigan St.</td>
       <td>10.0</td>
-      <td>11.3</td>
-      <td>10.5</td>
+      <td>11.0</td>
+      <td>10.4</td>
     </tr>
     <tr>
       <td>12</td>
@@ -195,22 +244,22 @@
       <td>14</td>
       <td>Florida</td>
       <td>18.7</td>
-      <td>6.7</td>
-      <td>13.9</td>
+      <td>7.0</td>
+      <td>14.0</td>
     </tr>
     <tr>
       <td>15</td>
       <td>Virginia</td>
       <td>14.3</td>
-      <td>20.0</td>
-      <td>16.6</td>
+      <td>19.3</td>
+      <td>16.3</td>
     </tr>
     <tr>
       <td>16</td>
       <td>Texas Tech</td>
       <td>14.7</td>
-      <td>20.7</td>
-      <td>17.1</td>
+      <td>20.3</td>
+      <td>16.9</td>
     </tr>
     <tr>
       <td>17</td>
@@ -223,15 +272,15 @@
       <td>18</td>
       <td>Tennessee</td>
       <td>19.7</td>
-      <td>16.3</td>
-      <td>18.3</td>
+      <td>16.7</td>
+      <td>18.5</td>
     </tr>
     <tr>
       <td>19</td>
       <td>Alabama</td>
       <td>19.7</td>
-      <td>19.0</td>
-      <td>19.4</td>
+      <td>19.3</td>
+      <td>19.5</td>
     </tr>
     <tr>
       <td>20</td>
@@ -244,8 +293,8 @@
       <td>21</td>
       <td>Louisville</td>
       <td>28.7</td>
-      <td>14.3</td>
-      <td>22.9</td>
+      <td>14.7</td>
+      <td>23.1</td>
     </tr>
     <tr>
       <td>22</td>
@@ -272,8 +321,8 @@
       <td>25</td>
       <td>Clemson</td>
       <td>25.0</td>
-      <td>27.7</td>
-      <td>26.1</td>
+      <td>27.3</td>
+      <td>25.9</td>
     </tr>
     <tr>
       <td>26</td>
@@ -314,8 +363,8 @@
       <td>31</td>
       <td>N.C. State</td>
       <td>35.7</td>
-      <td>23.7</td>
-      <td>30.9</td>
+      <td>23.3</td>
+      <td>30.7</td>
     </tr>
     <tr>
       <td>32</td>
@@ -342,15 +391,15 @@
       <td>35</td>
       <td>Indiana</td>
       <td>41.7</td>
-      <td>27.0</td>
-      <td>35.8</td>
+      <td>27.7</td>
+      <td>36.1</td>
     </tr>
     <tr>
       <td>36</td>
       <td>Saint Mary's</td>
       <td>36.3</td>
-      <td>37.7</td>
-      <td>36.9</td>
+      <td>37.0</td>
+      <td>36.6</td>
     </tr>
     <tr>
       <td>37</td>
@@ -368,17 +417,17 @@
     </tr>
     <tr>
       <td>39</td>
+      <td>USC</td>
+      <td>37.7</td>
+      <td>48.3</td>
+      <td>41.9</td>
+    </tr>
+    <tr>
+      <td>40</td>
       <td>New Mexico</td>
       <td>39.7</td>
       <td>45.7</td>
       <td>42.1</td>
-    </tr>
-    <tr>
-      <td>40</td>
-      <td>USC</td>
-      <td>37.7</td>
-      <td>49.0</td>
-      <td>42.2</td>
     </tr>
     <tr>
       <td>41</td>
@@ -405,50 +454,50 @@
       <td>44</td>
       <td>Ohio St.</td>
       <td>52.3</td>
-      <td>39.7</td>
-      <td>47.3</td>
+      <td>39.3</td>
+      <td>47.1</td>
     </tr>
     <tr>
       <td>45</td>
       <td>Texas</td>
       <td>56.3</td>
-      <td>35.7</td>
-      <td>48.1</td>
+      <td>36.3</td>
+      <td>48.3</td>
     </tr>
     <tr>
       <td>46</td>
       <td>San Diego St.</td>
       <td>51.0</td>
-      <td>46.0</td>
-      <td>49.0</td>
+      <td>46.3</td>
+      <td>49.1</td>
     </tr>
     <tr>
       <td>47</td>
       <td>California</td>
       <td>43.0</td>
-      <td>59.7</td>
-      <td>49.7</td>
+      <td>60.0</td>
+      <td>49.8</td>
     </tr>
     <tr>
       <td>48</td>
       <td>Seton Hall</td>
       <td>50.7</td>
-      <td>52.0</td>
-      <td>51.2</td>
+      <td>51.7</td>
+      <td>51.1</td>
     </tr>
     <tr>
       <td>49</td>
-      <td>Missouri</td>
-      <td>51.3</td>
-      <td>54.7</td>
-      <td>52.7</td>
+      <td>Virginia Tech</td>
+      <td>44.3</td>
+      <td>64.7</td>
+      <td>52.5</td>
     </tr>
     <tr>
       <td>50</td>
-      <td>Virginia Tech</td>
-      <td>44.3</td>
-      <td>65.3</td>
-      <td>52.7</td>
+      <td>Missouri</td>
+      <td>51.3</td>
+      <td>55.0</td>
+      <td>52.8</td>
     </tr>
     <tr>
       <td>51</td>
@@ -461,8 +510,8 @@
       <td>52</td>
       <td>VCU</td>
       <td>53.7</td>
-      <td>54.7</td>
-      <td>54.1</td>
+      <td>53.7</td>
+      <td>53.7</td>
     </tr>
     <tr>
       <td>53</td>
@@ -475,22 +524,22 @@
       <td>54</td>
       <td>Tulsa</td>
       <td>54.7</td>
-      <td>59.3</td>
-      <td>56.5</td>
+      <td>59.0</td>
+      <td>56.4</td>
     </tr>
     <tr>
       <td>55</td>
-      <td>Miami OH</td>
-      <td>37.0</td>
-      <td>87.0</td>
-      <td>57.0</td>
+      <td>George Mason</td>
+      <td>39.3</td>
+      <td>83.7</td>
+      <td>57.1</td>
     </tr>
     <tr>
       <td>56</td>
-      <td>George Mason</td>
-      <td>39.3</td>
-      <td>84.0</td>
-      <td>57.2</td>
+      <td>Miami OH</td>
+      <td>37.0</td>
+      <td>87.7</td>
+      <td>57.3</td>
     </tr>
     <tr>
       <td>57</td>
@@ -503,64 +552,64 @@
       <td>58</td>
       <td>Baylor</td>
       <td>65.7</td>
-      <td>50.3</td>
-      <td>59.5</td>
+      <td>50.7</td>
+      <td>59.7</td>
     </tr>
     <tr>
       <td>59</td>
-      <td>Belmont</td>
-      <td>50.0</td>
-      <td>75.3</td>
-      <td>60.1</td>
-    </tr>
-    <tr>
-      <td>60</td>
-      <td>LSU</td>
-      <td>67.3</td>
-      <td>49.7</td>
-      <td>60.3</td>
-    </tr>
-    <tr>
-      <td>61</td>
       <td>TCU</td>
       <td>64.0</td>
       <td>54.7</td>
       <td>60.3</td>
     </tr>
     <tr>
+      <td>60</td>
+      <td>LSU</td>
+      <td>67.3</td>
+      <td>50.0</td>
+      <td>60.4</td>
+    </tr>
+    <tr>
+      <td>61</td>
+      <td>Belmont</td>
+      <td>50.0</td>
+      <td>76.0</td>
+      <td>60.4</td>
+    </tr>
+    <tr>
       <td>62</td>
       <td>West Virginia</td>
       <td>65.0</td>
-      <td>56.0</td>
-      <td>61.4</td>
+      <td>56.3</td>
+      <td>61.5</td>
     </tr>
     <tr>
       <td>63</td>
       <td>Akron</td>
       <td>62.7</td>
-      <td>59.7</td>
-      <td>61.5</td>
+      <td>60.3</td>
+      <td>61.7</td>
     </tr>
     <tr>
       <td>64</td>
       <td>Grand Canyon</td>
       <td>65.3</td>
-      <td>64.3</td>
-      <td>64.9</td>
+      <td>64.7</td>
+      <td>65.1</td>
     </tr>
     <tr>
       <td>65</td>
       <td>Liberty</td>
       <td>53.7</td>
-      <td>84.0</td>
-      <td>65.8</td>
+      <td>84.3</td>
+      <td>65.9</td>
     </tr>
     <tr>
       <td>66</td>
       <td>Stanford</td>
       <td>55.0</td>
-      <td>83.3</td>
-      <td>66.3</td>
+      <td>83.0</td>
+      <td>66.2</td>
     </tr>
     <tr>
       <td>67</td>
@@ -573,57 +622,57 @@
       <td>68</td>
       <td>Cincinnati</td>
       <td>79.3</td>
-      <td>54.7</td>
-      <td>69.5</td>
+      <td>55.0</td>
+      <td>69.6</td>
     </tr>
     <tr>
       <td>69</td>
       <td>Creighton</td>
       <td>71.3</td>
-      <td>68.3</td>
-      <td>70.1</td>
+      <td>68.7</td>
+      <td>70.3</td>
     </tr>
     <tr>
       <td>70</td>
       <td>Boise St.</td>
       <td>74.3</td>
-      <td>66.7</td>
-      <td>71.3</td>
+      <td>64.3</td>
+      <td>70.3</td>
     </tr>
     <tr>
       <td>71</td>
-      <td>South Florida</td>
-      <td>75.0</td>
-      <td>66.3</td>
+      <td>McNeese St.</td>
+      <td>71.0</td>
+      <td>72.3</td>
       <td>71.5</td>
     </tr>
     <tr>
       <td>72</td>
-      <td>McNeese St.</td>
-      <td>71.0</td>
-      <td>72.7</td>
+      <td>South Florida</td>
+      <td>75.0</td>
+      <td>66.7</td>
       <td>71.7</td>
     </tr>
     <tr>
       <td>73</td>
+      <td>Mississippi</td>
+      <td>79.0</td>
+      <td>64.7</td>
+      <td>73.3</td>
+    </tr>
+    <tr>
+      <td>74</td>
       <td>Yale</td>
       <td>65.7</td>
       <td>85.0</td>
       <td>73.4</td>
     </tr>
     <tr>
-      <td>74</td>
-      <td>Mississippi</td>
-      <td>79.0</td>
-      <td>65.0</td>
-      <td>73.4</td>
-    </tr>
-    <tr>
       <td>75</td>
       <td>Syracuse</td>
       <td>80.7</td>
-      <td>65.0</td>
-      <td>74.4</td>
+      <td>66.0</td>
+      <td>74.8</td>
     </tr>
     <tr>
       <td>76</td>
@@ -636,22 +685,22 @@
       <td>77</td>
       <td>Arizona St.</td>
       <td>72.0</td>
-      <td>83.0</td>
-      <td>76.4</td>
+      <td>82.7</td>
+      <td>76.3</td>
     </tr>
     <tr>
       <td>78</td>
       <td>Wake Forest</td>
       <td>83.3</td>
-      <td>72.0</td>
-      <td>78.8</td>
+      <td>71.7</td>
+      <td>78.7</td>
     </tr>
     <tr>
       <td>79</td>
       <td>Mississippi St.</td>
       <td>82.0</td>
-      <td>75.0</td>
-      <td>79.2</td>
+      <td>74.7</td>
+      <td>79.1</td>
     </tr>
     <tr>
       <td>80</td>
@@ -685,29 +734,29 @@
       <td>84</td>
       <td>Xavier</td>
       <td>81.0</td>
-      <td>92.7</td>
-      <td>85.7</td>
+      <td>96.0</td>
+      <td>87.0</td>
     </tr>
     <tr>
       <td>85</td>
       <td>Illinois St.</td>
       <td>90.0</td>
-      <td>81.7</td>
-      <td>86.7</td>
+      <td>82.7</td>
+      <td>87.1</td>
     </tr>
     <tr>
       <td>86</td>
       <td>Dayton</td>
       <td>91.0</td>
-      <td>85.0</td>
-      <td>88.6</td>
+      <td>85.3</td>
+      <td>88.7</td>
     </tr>
     <tr>
       <td>87</td>
       <td>Kansas St.</td>
       <td>91.3</td>
-      <td>89.3</td>
-      <td>90.5</td>
+      <td>88.3</td>
+      <td>90.1</td>
     </tr>
     <tr>
       <td>88</td>
@@ -720,29 +769,29 @@
       <td>89</td>
       <td>High Point</td>
       <td>93.0</td>
-      <td>88.7</td>
-      <td>91.3</td>
+      <td>89.3</td>
+      <td>91.5</td>
     </tr>
     <tr>
       <td>90</td>
-      <td>Minnesota</td>
-      <td>106.3</td>
-      <td>71.3</td>
+      <td>Murray St.</td>
+      <td>83.7</td>
+      <td>105.3</td>
       <td>92.3</td>
     </tr>
     <tr>
       <td>91</td>
-      <td>Murray St.</td>
-      <td>83.7</td>
-      <td>106.0</td>
-      <td>92.6</td>
+      <td>Minnesota</td>
+      <td>106.3</td>
+      <td>71.7</td>
+      <td>92.5</td>
     </tr>
     <tr>
       <td>92</td>
       <td>UNC Wilmington</td>
       <td>74.3</td>
-      <td>122.7</td>
-      <td>93.7</td>
+      <td>123.0</td>
+      <td>93.8</td>
     </tr>
     <tr>
       <td>93</td>
@@ -755,15 +804,15 @@
       <td>94</td>
       <td>Providence</td>
       <td>115.3</td>
-      <td>68.7</td>
-      <td>96.7</td>
+      <td>68.3</td>
+      <td>96.5</td>
     </tr>
     <tr>
       <td>95</td>
       <td>Florida St.</td>
       <td>97.7</td>
-      <td>96.0</td>
-      <td>97.0</td>
+      <td>95.3</td>
+      <td>96.7</td>
     </tr>
     <tr>
       <td>96</td>
@@ -774,17 +823,17 @@
     </tr>
     <tr>
       <td>97</td>
-      <td>DePaul</td>
-      <td>95.3</td>
-      <td>100.7</td>
-      <td>97.5</td>
+      <td>Davidson</td>
+      <td>91.0</td>
+      <td>106.7</td>
+      <td>97.3</td>
     </tr>
     <tr>
       <td>98</td>
-      <td>Davidson</td>
-      <td>91.0</td>
-      <td>108.0</td>
-      <td>97.8</td>
+      <td>DePaul</td>
+      <td>95.3</td>
+      <td>101.0</td>
+      <td>97.6</td>
     </tr>
     <tr>
       <td>99</td>
@@ -797,15 +846,15 @@
       <td>100</td>
       <td>Sam Houston St.</td>
       <td>101.0</td>
-      <td>105.3</td>
-      <td>102.7</td>
+      <td>105.0</td>
+      <td>102.6</td>
     </tr>
     <tr>
       <td>101</td>
       <td>South Carolina</td>
       <td>111.7</td>
-      <td>90.3</td>
-      <td>103.1</td>
+      <td>89.0</td>
+      <td>102.6</td>
     </tr>
     <tr>
       <td>102</td>
@@ -818,29 +867,29 @@
       <td>103</td>
       <td>Kent St.</td>
       <td>83.0</td>
-      <td>142.3</td>
-      <td>106.7</td>
+      <td>143.0</td>
+      <td>107.0</td>
     </tr>
     <tr>
       <td>104</td>
       <td>Florida Atlantic</td>
       <td>107.0</td>
-      <td>108.7</td>
-      <td>107.7</td>
+      <td>108.0</td>
+      <td>107.4</td>
     </tr>
     <tr>
       <td>105</td>
       <td>Colorado St.</td>
       <td>114.3</td>
-      <td>100.3</td>
-      <td>108.7</td>
+      <td>99.7</td>
+      <td>108.5</td>
     </tr>
     <tr>
       <td>106</td>
       <td>San Francisco</td>
       <td>117.3</td>
-      <td>95.7</td>
-      <td>108.7</td>
+      <td>95.3</td>
+      <td>108.5</td>
     </tr>
     <tr>
       <td>107</td>
@@ -853,15 +902,15 @@
       <td>108</td>
       <td>Memphis</td>
       <td>125.7</td>
-      <td>95.7</td>
-      <td>113.7</td>
+      <td>96.0</td>
+      <td>113.8</td>
     </tr>
     <tr>
       <td>109</td>
       <td>Rhode Island</td>
       <td>115.3</td>
-      <td>113.7</td>
-      <td>114.7</td>
+      <td>114.3</td>
+      <td>114.9</td>
     </tr>
     <tr>
       <td>110</td>
@@ -874,8 +923,8 @@
       <td>111</td>
       <td>North Dakota St.</td>
       <td>106.3</td>
-      <td>128.7</td>
-      <td>115.3</td>
+      <td>128.3</td>
+      <td>115.1</td>
     </tr>
     <tr>
       <td>112</td>
@@ -895,15 +944,15 @@
       <td>114</td>
       <td>Northern Iowa</td>
       <td>124.7</td>
-      <td>104.0</td>
-      <td>116.4</td>
+      <td>104.7</td>
+      <td>116.7</td>
     </tr>
     <tr>
       <td>115</td>
       <td>Utah</td>
       <td>126.0</td>
-      <td>106.7</td>
-      <td>118.3</td>
+      <td>107.0</td>
+      <td>118.4</td>
     </tr>
     <tr>
       <td>116</td>
@@ -916,15 +965,15 @@
       <td>117</td>
       <td>Oregon</td>
       <td>137.3</td>
-      <td>95.0</td>
-      <td>120.4</td>
+      <td>94.3</td>
+      <td>120.1</td>
     </tr>
     <tr>
       <td>118</td>
       <td>Saint Joseph's</td>
       <td>111.3</td>
-      <td>138.3</td>
-      <td>122.1</td>
+      <td>138.0</td>
+      <td>122.0</td>
     </tr>
     <tr>
       <td>119</td>
@@ -944,29 +993,29 @@
       <td>121</td>
       <td>Winthrop</td>
       <td>115.7</td>
-      <td>137.3</td>
-      <td>124.3</td>
+      <td>137.0</td>
+      <td>124.2</td>
     </tr>
     <tr>
       <td>122</td>
-      <td>Pittsburgh</td>
-      <td>144.7</td>
-      <td>98.0</td>
-      <td>126.0</td>
+      <td>Bradley</td>
+      <td>122.0</td>
+      <td>133.3</td>
+      <td>126.5</td>
     </tr>
     <tr>
       <td>123</td>
-      <td>Bradley</td>
-      <td>122.0</td>
-      <td>135.0</td>
-      <td>127.2</td>
+      <td>Troy</td>
+      <td>120.7</td>
+      <td>137.3</td>
+      <td>127.3</td>
     </tr>
     <tr>
       <td>124</td>
-      <td>Troy</td>
-      <td>120.7</td>
-      <td>138.0</td>
-      <td>127.6</td>
+      <td>Pittsburgh</td>
+      <td>144.7</td>
+      <td>101.3</td>
+      <td>127.3</td>
     </tr>
     <tr>
       <td>125</td>
@@ -979,64 +1028,64 @@
       <td>126</td>
       <td>Penn St.</td>
       <td>135.3</td>
-      <td>122.7</td>
-      <td>130.3</td>
+      <td>123.3</td>
+      <td>130.5</td>
     </tr>
     <tr>
       <td>127</td>
-      <td>Hofstra</td>
-      <td>138.0</td>
-      <td>118.7</td>
-      <td>130.3</td>
-    </tr>
-    <tr>
-      <td>128</td>
       <td>St. Thomas</td>
       <td>127.0</td>
       <td>135.7</td>
       <td>130.5</td>
     </tr>
     <tr>
+      <td>128</td>
+      <td>Hofstra</td>
+      <td>138.0</td>
+      <td>119.3</td>
+      <td>130.5</td>
+    </tr>
+    <tr>
       <td>129</td>
       <td>Mercer</td>
       <td>126.0</td>
-      <td>142.7</td>
-      <td>132.7</td>
+      <td>143.3</td>
+      <td>132.9</td>
     </tr>
     <tr>
       <td>130</td>
       <td>Portland St.</td>
       <td>124.0</td>
-      <td>148.7</td>
-      <td>133.9</td>
+      <td>148.0</td>
+      <td>133.6</td>
     </tr>
     <tr>
       <td>131</td>
-      <td>Rutgers</td>
-      <td>131.0</td>
-      <td>139.3</td>
-      <td>134.3</td>
-    </tr>
-    <tr>
-      <td>132</td>
       <td>UT Arlington</td>
       <td>118.0</td>
       <td>159.7</td>
       <td>134.7</td>
     </tr>
     <tr>
-      <td>133</td>
+      <td>132</td>
       <td>William & Mary</td>
       <td>130.0</td>
-      <td>142.0</td>
+      <td>141.7</td>
+      <td>134.7</td>
+    </tr>
+    <tr>
+      <td>133</td>
+      <td>Wright St.</td>
+      <td>142.7</td>
+      <td>123.0</td>
       <td>134.8</td>
     </tr>
     <tr>
       <td>134</td>
-      <td>Wright St.</td>
-      <td>142.7</td>
-      <td>123.3</td>
-      <td>134.9</td>
+      <td>Rutgers</td>
+      <td>131.0</td>
+      <td>141.0</td>
+      <td>135.0</td>
     </tr>
     <tr>
       <td>135</td>
@@ -1049,28 +1098,28 @@
       <td>136</td>
       <td>Temple</td>
       <td>134.3</td>
-      <td>137.7</td>
-      <td>135.7</td>
+      <td>138.0</td>
+      <td>135.8</td>
     </tr>
     <tr>
       <td>137</td>
       <td>Austin Peay</td>
       <td>119.7</td>
-      <td>161.0</td>
-      <td>136.2</td>
+      <td>160.7</td>
+      <td>136.1</td>
     </tr>
     <tr>
       <td>138</td>
-      <td>UNLV</td>
-      <td>142.0</td>
-      <td>128.0</td>
-      <td>136.4</td>
-    </tr>
-    <tr>
-      <td>139</td>
       <td>Georgia Tech</td>
       <td>141.7</td>
       <td>128.7</td>
+      <td>136.5</td>
+    </tr>
+    <tr>
+      <td>139</td>
+      <td>UNLV</td>
+      <td>142.0</td>
+      <td>128.3</td>
       <td>136.5</td>
     </tr>
     <tr>
@@ -1082,24 +1131,24 @@
     </tr>
     <tr>
       <td>141</td>
-      <td>Charleston</td>
-      <td>120.3</td>
-      <td>169.7</td>
-      <td>140.1</td>
+      <td>St. Bonaventure</td>
+      <td>133.0</td>
+      <td>150.3</td>
+      <td>139.9</td>
     </tr>
     <tr>
       <td>142</td>
-      <td>St. Bonaventure</td>
-      <td>133.0</td>
-      <td>151.3</td>
-      <td>140.3</td>
+      <td>Charleston</td>
+      <td>120.3</td>
+      <td>170.0</td>
+      <td>140.2</td>
     </tr>
     <tr>
       <td>143</td>
       <td>Marshall</td>
       <td>131.3</td>
-      <td>156.0</td>
-      <td>141.2</td>
+      <td>155.7</td>
+      <td>141.1</td>
     </tr>
     <tr>
       <td>144</td>
@@ -1110,45 +1159,45 @@
     </tr>
     <tr>
       <td>145</td>
-      <td>Duquesne</td>
-      <td>161.3</td>
-      <td>123.0</td>
-      <td>146.0</td>
+      <td>Marquette</td>
+      <td>175.0</td>
+      <td>101.7</td>
+      <td>145.7</td>
     </tr>
     <tr>
       <td>146</td>
-      <td>Marquette</td>
-      <td>175.0</td>
-      <td>102.7</td>
-      <td>146.1</td>
+      <td>Duquesne</td>
+      <td>161.3</td>
+      <td>122.7</td>
+      <td>145.9</td>
     </tr>
     <tr>
       <td>147</td>
       <td>Lipscomb</td>
       <td>133.7</td>
-      <td>170.7</td>
-      <td>148.5</td>
+      <td>171.0</td>
+      <td>148.6</td>
     </tr>
     <tr>
       <td>148</td>
       <td>Illinois Chicago</td>
       <td>162.0</td>
-      <td>130.7</td>
-      <td>149.5</td>
+      <td>131.0</td>
+      <td>149.6</td>
     </tr>
     <tr>
       <td>149</td>
       <td>Richmond</td>
       <td>155.0</td>
-      <td>146.7</td>
-      <td>151.7</td>
+      <td>147.0</td>
+      <td>151.8</td>
     </tr>
     <tr>
       <td>150</td>
       <td>Columbia</td>
       <td>139.3</td>
-      <td>175.0</td>
-      <td>153.6</td>
+      <td>174.7</td>
+      <td>153.5</td>
     </tr>
     <tr>
       <td>151</td>
@@ -1161,106 +1210,106 @@
       <td>152</td>
       <td>Kennesaw St.</td>
       <td>162.3</td>
-      <td>144.0</td>
-      <td>155.0</td>
+      <td>143.7</td>
+      <td>154.9</td>
     </tr>
     <tr>
       <td>153</td>
       <td>Charlotte</td>
       <td>149.0</td>
-      <td>164.7</td>
-      <td>155.3</td>
+      <td>164.0</td>
+      <td>155.0</td>
     </tr>
     <tr>
       <td>154</td>
       <td>Tennessee Martin</td>
       <td>120.7</td>
-      <td>210.3</td>
-      <td>156.5</td>
+      <td>211.0</td>
+      <td>156.8</td>
     </tr>
     <tr>
       <td>155</td>
       <td>Marist</td>
       <td>153.0</td>
-      <td>167.3</td>
-      <td>158.7</td>
+      <td>167.0</td>
+      <td>158.6</td>
     </tr>
     <tr>
       <td>156</td>
       <td>Bowling Green</td>
       <td>177.3</td>
-      <td>134.3</td>
-      <td>160.1</td>
+      <td>132.7</td>
+      <td>159.5</td>
     </tr>
     <tr>
       <td>157</td>
+      <td>Toledo</td>
+      <td>162.0</td>
+      <td>157.7</td>
+      <td>160.3</td>
+    </tr>
+    <tr>
+      <td>158</td>
       <td>North Texas</td>
       <td>166.3</td>
       <td>151.3</td>
       <td>160.3</td>
     </tr>
     <tr>
-      <td>158</td>
+      <td>159</td>
       <td>Furman</td>
       <td>150.7</td>
       <td>175.0</td>
       <td>160.4</td>
     </tr>
     <tr>
-      <td>159</td>
-      <td>Toledo</td>
-      <td>162.0</td>
-      <td>158.0</td>
-      <td>160.4</td>
-    </tr>
-    <tr>
       <td>160</td>
       <td>Navy</td>
       <td>148.0</td>
-      <td>179.0</td>
-      <td>160.4</td>
+      <td>179.7</td>
+      <td>160.7</td>
     </tr>
     <tr>
       <td>161</td>
       <td>South Alabama</td>
       <td>134.7</td>
-      <td>210.3</td>
-      <td>164.9</td>
+      <td>210.0</td>
+      <td>164.8</td>
     </tr>
     <tr>
       <td>162</td>
       <td>Western Kentucky</td>
       <td>163.0</td>
-      <td>168.0</td>
-      <td>165.0</td>
+      <td>168.3</td>
+      <td>165.1</td>
     </tr>
     <tr>
       <td>163</td>
-      <td>Fresno St.</td>
-      <td>180.7</td>
-      <td>144.3</td>
-      <td>166.1</td>
-    </tr>
-    <tr>
-      <td>164</td>
       <td>Arkansas St.</td>
       <td>167.7</td>
       <td>164.0</td>
       <td>166.2</td>
     </tr>
     <tr>
-      <td>165</td>
-      <td>Boston College</td>
-      <td>184.0</td>
-      <td>141.7</td>
-      <td>167.1</td>
+      <td>164</td>
+      <td>Fresno St.</td>
+      <td>180.7</td>
+      <td>144.7</td>
+      <td>166.3</td>
     </tr>
     <tr>
-      <td>166</td>
+      <td>165</td>
       <td>Washington St.</td>
       <td>189.7</td>
       <td>134.0</td>
       <td>167.4</td>
+    </tr>
+    <tr>
+      <td>166</td>
+      <td>Boston College</td>
+      <td>184.0</td>
+      <td>143.3</td>
+      <td>167.7</td>
     </tr>
     <tr>
       <td>167</td>
@@ -1280,15 +1329,15 @@
       <td>169</td>
       <td>Quinnipiac</td>
       <td>160.7</td>
-      <td>187.7</td>
-      <td>171.5</td>
+      <td>188.7</td>
+      <td>171.9</td>
     </tr>
     <tr>
       <td>170</td>
       <td>Towson</td>
       <td>176.3</td>
-      <td>167.0</td>
-      <td>172.6</td>
+      <td>167.3</td>
+      <td>172.7</td>
     </tr>
     <tr>
       <td>171</td>
@@ -1299,66 +1348,66 @@
     </tr>
     <tr>
       <td>172</td>
-      <td>Valparaiso</td>
-      <td>185.3</td>
-      <td>156.3</td>
-      <td>173.7</td>
+      <td>Merrimack</td>
+      <td>156.7</td>
+      <td>200.0</td>
+      <td>174.0</td>
     </tr>
     <tr>
       <td>173</td>
-      <td>Merrimack</td>
-      <td>156.7</td>
-      <td>199.7</td>
-      <td>173.9</td>
+      <td>Valparaiso</td>
+      <td>185.3</td>
+      <td>157.7</td>
+      <td>174.3</td>
     </tr>
     <tr>
       <td>174</td>
       <td>Southern Illinois</td>
       <td>202.3</td>
-      <td>135.0</td>
-      <td>175.4</td>
+      <td>132.7</td>
+      <td>174.5</td>
     </tr>
     <tr>
       <td>175</td>
-      <td>Harvard</td>
-      <td>178.7</td>
-      <td>172.7</td>
-      <td>176.3</td>
-    </tr>
-    <tr>
-      <td>176</td>
       <td>Montana</td>
       <td>187.3</td>
       <td>159.7</td>
       <td>176.3</td>
     </tr>
     <tr>
+      <td>176</td>
+      <td>Harvard</td>
+      <td>178.7</td>
+      <td>173.0</td>
+      <td>176.4</td>
+    </tr>
+    <tr>
       <td>177</td>
-      <td>LIU</td>
-      <td>157.7</td>
-      <td>205.0</td>
-      <td>176.6</td>
+      <td>Appalachian St.</td>
+      <td>180.7</td>
+      <td>170.7</td>
+      <td>176.7</td>
     </tr>
     <tr>
       <td>178</td>
-      <td>Appalachian St.</td>
-      <td>180.7</td>
-      <td>171.0</td>
-      <td>176.8</td>
+      <td>LIU</td>
+      <td>157.7</td>
+      <td>206.0</td>
+      <td>177.0</td>
     </tr>
     <tr>
       <td>179</td>
       <td>Montana St.</td>
       <td>193.0</td>
-      <td>154.7</td>
-      <td>177.7</td>
+      <td>155.3</td>
+      <td>177.9</td>
     </tr>
     <tr>
       <td>180</td>
       <td>Massachusetts</td>
       <td>188.0</td>
-      <td>163.0</td>
-      <td>178.0</td>
+      <td>164.7</td>
+      <td>178.7</td>
     </tr>
     <tr>
       <td>181</td>
@@ -1371,8 +1420,8 @@
       <td>182</td>
       <td>Penn</td>
       <td>186.0</td>
-      <td>176.3</td>
-      <td>182.1</td>
+      <td>177.3</td>
+      <td>182.5</td>
     </tr>
     <tr>
       <td>183</td>
@@ -1385,22 +1434,22 @@
       <td>184</td>
       <td>Elon</td>
       <td>181.7</td>
-      <td>186.7</td>
-      <td>183.7</td>
+      <td>187.3</td>
+      <td>183.9</td>
     </tr>
     <tr>
       <td>185</td>
       <td>Cornell</td>
       <td>195.3</td>
-      <td>169.0</td>
-      <td>184.8</td>
+      <td>168.3</td>
+      <td>184.5</td>
     </tr>
     <tr>
       <td>186</td>
       <td>Missouri St.</td>
       <td>183.7</td>
-      <td>187.7</td>
-      <td>185.3</td>
+      <td>187.3</td>
+      <td>185.1</td>
     </tr>
     <tr>
       <td>187</td>
@@ -1420,36 +1469,36 @@
       <td>189</td>
       <td>Idaho</td>
       <td>198.0</td>
-      <td>173.3</td>
-      <td>188.1</td>
+      <td>172.7</td>
+      <td>187.9</td>
     </tr>
     <tr>
       <td>190</td>
       <td>UT Rio Grande Valley</td>
       <td>213.3</td>
-      <td>155.7</td>
-      <td>190.3</td>
+      <td>155.3</td>
+      <td>190.1</td>
     </tr>
     <tr>
       <td>191</td>
       <td>Loyola Marymount</td>
       <td>206.3</td>
-      <td>166.7</td>
-      <td>190.5</td>
+      <td>166.3</td>
+      <td>190.3</td>
     </tr>
     <tr>
       <td>192</td>
       <td>Bethune Cookman</td>
       <td>171.7</td>
-      <td>221.7</td>
-      <td>191.7</td>
+      <td>222.0</td>
+      <td>191.8</td>
     </tr>
     <tr>
       <td>193</td>
       <td>Drake</td>
       <td>199.7</td>
-      <td>181.7</td>
-      <td>192.5</td>
+      <td>181.3</td>
+      <td>192.3</td>
     </tr>
     <tr>
       <td>194</td>
@@ -1460,31 +1509,31 @@
     </tr>
     <tr>
       <td>195</td>
-      <td>Central Arkansas</td>
-      <td>196.0</td>
-      <td>192.3</td>
-      <td>194.5</td>
+      <td>Ohio</td>
+      <td>184.3</td>
+      <td>209.3</td>
+      <td>194.3</td>
     </tr>
     <tr>
       <td>196</td>
-      <td>Fordham</td>
-      <td>206.7</td>
-      <td>176.3</td>
-      <td>194.5</td>
+      <td>Central Arkansas</td>
+      <td>196.0</td>
+      <td>192.0</td>
+      <td>194.4</td>
     </tr>
     <tr>
       <td>197</td>
       <td>Stony Brook</td>
       <td>178.7</td>
-      <td>219.3</td>
-      <td>194.9</td>
+      <td>220.0</td>
+      <td>195.2</td>
     </tr>
     <tr>
       <td>198</td>
-      <td>Ohio</td>
-      <td>184.3</td>
-      <td>212.3</td>
-      <td>195.5</td>
+      <td>Fordham</td>
+      <td>206.7</td>
+      <td>178.3</td>
+      <td>195.3</td>
     </tr>
     <tr>
       <td>199</td>
@@ -1497,22 +1546,22 @@
       <td>200</td>
       <td>Northern Kentucky</td>
       <td>208.3</td>
-      <td>187.7</td>
-      <td>200.1</td>
+      <td>187.3</td>
+      <td>199.9</td>
     </tr>
     <tr>
       <td>201</td>
       <td>Queens</td>
       <td>195.7</td>
-      <td>209.0</td>
-      <td>201.0</td>
+      <td>209.3</td>
+      <td>201.1</td>
     </tr>
     <tr>
       <td>202</td>
       <td>Colgate</td>
       <td>195.3</td>
-      <td>209.7</td>
-      <td>201.1</td>
+      <td>210.0</td>
+      <td>201.2</td>
     </tr>
     <tr>
       <td>203</td>
@@ -1532,8 +1581,8 @@
       <td>205</td>
       <td>Saint Peter's</td>
       <td>182.7</td>
-      <td>240.0</td>
-      <td>205.6</td>
+      <td>239.7</td>
+      <td>205.5</td>
     </tr>
     <tr>
       <td>206</td>
@@ -1553,50 +1602,50 @@
       <td>208</td>
       <td>Texas A&M Corpus Chris</td>
       <td>218.7</td>
-      <td>193.3</td>
-      <td>208.5</td>
+      <td>194.0</td>
+      <td>208.8</td>
     </tr>
     <tr>
       <td>209</td>
       <td>FIU</td>
       <td>217.0</td>
-      <td>196.3</td>
-      <td>208.7</td>
+      <td>196.7</td>
+      <td>208.9</td>
     </tr>
     <tr>
       <td>210</td>
       <td>Lindenwood</td>
       <td>189.7</td>
-      <td>237.7</td>
-      <td>208.9</td>
+      <td>238.0</td>
+      <td>209.0</td>
     </tr>
     <tr>
       <td>211</td>
-      <td>Robert Morris</td>
-      <td>212.3</td>
-      <td>210.3</td>
-      <td>211.5</td>
+      <td>Coastal Carolina</td>
+      <td>195.0</td>
+      <td>236.0</td>
+      <td>211.4</td>
     </tr>
     <tr>
       <td>212</td>
-      <td>Coastal Carolina</td>
-      <td>195.0</td>
-      <td>236.3</td>
-      <td>211.5</td>
+      <td>Robert Morris</td>
+      <td>212.3</td>
+      <td>210.7</td>
+      <td>211.7</td>
     </tr>
     <tr>
       <td>213</td>
       <td>Campbell</td>
       <td>213.3</td>
-      <td>209.0</td>
-      <td>211.6</td>
+      <td>209.3</td>
+      <td>211.7</td>
     </tr>
     <tr>
       <td>214</td>
       <td>Tennessee St.</td>
       <td>178.3</td>
-      <td>263.7</td>
-      <td>212.5</td>
+      <td>264.0</td>
+      <td>212.6</td>
     </tr>
     <tr>
       <td>215</td>
@@ -1621,17 +1670,17 @@
     </tr>
     <tr>
       <td>218</td>
-      <td>New Orleans</td>
-      <td>218.7</td>
-      <td>210.7</td>
+      <td>James Madison</td>
+      <td>217.0</td>
+      <td>213.3</td>
       <td>215.5</td>
     </tr>
     <tr>
       <td>219</td>
-      <td>James Madison</td>
-      <td>217.0</td>
-      <td>213.7</td>
-      <td>215.7</td>
+      <td>New Orleans</td>
+      <td>218.7</td>
+      <td>211.0</td>
+      <td>215.6</td>
     </tr>
     <tr>
       <td>220</td>
@@ -1644,22 +1693,22 @@
       <td>221</td>
       <td>Drexel</td>
       <td>231.7</td>
-      <td>203.7</td>
-      <td>220.5</td>
+      <td>204.3</td>
+      <td>220.7</td>
     </tr>
     <tr>
       <td>222</td>
-      <td>American</td>
-      <td>219.0</td>
-      <td>223.3</td>
+      <td>South Dakota St.</td>
+      <td>243.3</td>
+      <td>186.7</td>
       <td>220.7</td>
     </tr>
     <tr>
       <td>223</td>
-      <td>South Dakota St.</td>
-      <td>243.3</td>
-      <td>187.0</td>
-      <td>220.8</td>
+      <td>American</td>
+      <td>219.0</td>
+      <td>223.7</td>
+      <td>220.9</td>
     </tr>
     <tr>
       <td>224</td>
@@ -1686,36 +1735,36 @@
       <td>227</td>
       <td>Radford</td>
       <td>225.0</td>
-      <td>234.7</td>
-      <td>228.9</td>
+      <td>235.0</td>
+      <td>229.0</td>
     </tr>
     <tr>
       <td>228</td>
       <td>La Salle</td>
       <td>235.7</td>
-      <td>221.0</td>
-      <td>229.8</td>
+      <td>223.3</td>
+      <td>230.7</td>
     </tr>
     <tr>
       <td>229</td>
       <td>San Diego</td>
       <td>254.0</td>
-      <td>197.0</td>
-      <td>231.2</td>
+      <td>196.0</td>
+      <td>230.8</td>
     </tr>
     <tr>
       <td>230</td>
+      <td>Eastern Michigan</td>
+      <td>239.3</td>
+      <td>222.3</td>
+      <td>232.5</td>
+    </tr>
+    <tr>
+      <td>231</td>
       <td>Southeast Missouri St.</td>
       <td>218.3</td>
       <td>254.3</td>
       <td>232.7</td>
-    </tr>
-    <tr>
-      <td>231</td>
-      <td>Eastern Michigan</td>
-      <td>239.3</td>
-      <td>224.0</td>
-      <td>233.2</td>
     </tr>
     <tr>
       <td>232</td>
@@ -1728,8 +1777,8 @@
       <td>233</td>
       <td>Monmouth</td>
       <td>245.3</td>
-      <td>218.7</td>
-      <td>234.7</td>
+      <td>219.3</td>
+      <td>234.9</td>
     </tr>
     <tr>
       <td>234</td>
@@ -1740,16 +1789,16 @@
     </tr>
     <tr>
       <td>235</td>
-      <td>Lamar</td>
-      <td>265.3</td>
-      <td>198.3</td>
-      <td>238.5</td>
-    </tr>
-    <tr>
-      <td>236</td>
       <td>Howard</td>
       <td>230.7</td>
       <td>251.0</td>
+      <td>238.8</td>
+    </tr>
+    <tr>
+      <td>236</td>
+      <td>Lamar</td>
+      <td>265.3</td>
+      <td>199.0</td>
       <td>238.8</td>
     </tr>
     <tr>
@@ -1763,29 +1812,29 @@
       <td>238</td>
       <td>Southern Miss</td>
       <td>231.3</td>
-      <td>252.0</td>
-      <td>239.6</td>
+      <td>251.7</td>
+      <td>239.5</td>
     </tr>
     <tr>
       <td>239</td>
+      <td>Indiana St.</td>
+      <td>264.3</td>
+      <td>209.3</td>
+      <td>242.3</td>
+    </tr>
+    <tr>
+      <td>240</td>
       <td>Florida Gulf Coast</td>
       <td>265.0</td>
       <td>212.0</td>
       <td>243.8</td>
     </tr>
     <tr>
-      <td>240</td>
+      <td>241</td>
       <td>Rice</td>
       <td>260.7</td>
       <td>219.0</td>
       <td>244.0</td>
-    </tr>
-    <tr>
-      <td>241</td>
-      <td>Indiana St.</td>
-      <td>264.3</td>
-      <td>216.3</td>
-      <td>245.1</td>
     </tr>
     <tr>
       <td>242</td>
@@ -1805,8 +1854,8 @@
       <td>244</td>
       <td>Princeton</td>
       <td>262.3</td>
-      <td>228.0</td>
-      <td>248.6</td>
+      <td>228.7</td>
+      <td>248.9</td>
     </tr>
     <tr>
       <td>245</td>
@@ -1826,29 +1875,29 @@
       <td>247</td>
       <td>SIU Edwardsville</td>
       <td>245.3</td>
-      <td>259.0</td>
-      <td>250.8</td>
+      <td>258.0</td>
+      <td>250.4</td>
     </tr>
     <tr>
       <td>248</td>
-      <td>Georgia Southern</td>
-      <td>252.0</td>
-      <td>256.0</td>
-      <td>253.6</td>
+      <td>Abilene Christian</td>
+      <td>245.3</td>
+      <td>266.3</td>
+      <td>253.7</td>
     </tr>
     <tr>
       <td>249</td>
-      <td>Abilene Christian</td>
-      <td>245.3</td>
-      <td>267.0</td>
-      <td>254.0</td>
+      <td>Georgia Southern</td>
+      <td>252.0</td>
+      <td>256.3</td>
+      <td>253.7</td>
     </tr>
     <tr>
       <td>250</td>
       <td>Western Carolina</td>
       <td>246.7</td>
-      <td>266.3</td>
-      <td>254.5</td>
+      <td>266.0</td>
+      <td>254.4</td>
     </tr>
     <tr>
       <td>251</td>
@@ -1866,17 +1915,17 @@
     </tr>
     <tr>
       <td>253</td>
-      <td>Sacramento St.</td>
-      <td>254.7</td>
-      <td>262.0</td>
-      <td>257.6</td>
+      <td>Idaho St.</td>
+      <td>267.0</td>
+      <td>243.3</td>
+      <td>257.5</td>
     </tr>
     <tr>
       <td>254</td>
-      <td>Idaho St.</td>
-      <td>267.0</td>
-      <td>243.7</td>
-      <td>257.7</td>
+      <td>Sacramento St.</td>
+      <td>254.7</td>
+      <td>261.7</td>
+      <td>257.5</td>
     </tr>
     <tr>
       <td>255</td>
@@ -1889,15 +1938,15 @@
       <td>256</td>
       <td>Milwaukee</td>
       <td>269.0</td>
-      <td>243.0</td>
-      <td>258.6</td>
+      <td>242.7</td>
+      <td>258.5</td>
     </tr>
     <tr>
       <td>257</td>
       <td>Morehead St.</td>
       <td>230.3</td>
-      <td>303.3</td>
-      <td>259.5</td>
+      <td>303.0</td>
+      <td>259.4</td>
     </tr>
     <tr>
       <td>258</td>
@@ -1910,8 +1959,8 @@
       <td>259</td>
       <td>Youngstown St.</td>
       <td>299.0</td>
-      <td>209.0</td>
-      <td>263.0</td>
+      <td>209.3</td>
+      <td>263.1</td>
     </tr>
     <tr>
       <td>260</td>
@@ -1931,15 +1980,15 @@
       <td>262</td>
       <td>Arkansas Pine Bluff</td>
       <td>241.0</td>
-      <td>303.7</td>
-      <td>266.1</td>
+      <td>304.0</td>
+      <td>266.2</td>
     </tr>
     <tr>
       <td>263</td>
       <td>South Dakota</td>
       <td>250.3</td>
-      <td>291.3</td>
-      <td>266.7</td>
+      <td>291.7</td>
+      <td>266.9</td>
     </tr>
     <tr>
       <td>264</td>
@@ -1959,8 +2008,8 @@
       <td>266</td>
       <td>East Carolina</td>
       <td>268.7</td>
-      <td>271.0</td>
-      <td>269.6</td>
+      <td>270.7</td>
+      <td>269.5</td>
     </tr>
     <tr>
       <td>267</td>
@@ -1973,8 +2022,8 @@
       <td>268</td>
       <td>UC Riverside</td>
       <td>271.0</td>
-      <td>278.7</td>
-      <td>274.1</td>
+      <td>279.0</td>
+      <td>274.2</td>
     </tr>
     <tr>
       <td>269</td>
@@ -2001,8 +2050,8 @@
       <td>272</td>
       <td>Jacksonville</td>
       <td>278.0</td>
-      <td>284.3</td>
-      <td>280.5</td>
+      <td>284.0</td>
+      <td>280.4</td>
     </tr>
     <tr>
       <td>273</td>
@@ -2015,29 +2064,29 @@
       <td>274</td>
       <td>Longwood</td>
       <td>292.3</td>
-      <td>265.7</td>
-      <td>281.7</td>
+      <td>266.0</td>
+      <td>281.8</td>
     </tr>
     <tr>
       <td>275</td>
       <td>Incarnate Word</td>
       <td>308.3</td>
-      <td>243.7</td>
-      <td>282.5</td>
+      <td>244.0</td>
+      <td>282.6</td>
     </tr>
     <tr>
       <td>276</td>
       <td>NJIT</td>
       <td>252.3</td>
-      <td>328.0</td>
-      <td>282.6</td>
+      <td>328.3</td>
+      <td>282.7</td>
     </tr>
     <tr>
       <td>277</td>
       <td>Southern</td>
       <td>298.3</td>
-      <td>261.7</td>
-      <td>283.7</td>
+      <td>262.0</td>
+      <td>283.8</td>
     </tr>
     <tr>
       <td>278</td>
@@ -2062,31 +2111,31 @@
     </tr>
     <tr>
       <td>281</td>
-      <td>Western Michigan</td>
-      <td>292.0</td>
-      <td>277.0</td>
-      <td>286.0</td>
-    </tr>
-    <tr>
-      <td>282</td>
       <td>Alabama A&M</td>
       <td>266.7</td>
       <td>315.3</td>
       <td>286.1</td>
     </tr>
     <tr>
-      <td>283</td>
+      <td>282</td>
       <td>Presbyterian</td>
       <td>298.7</td>
-      <td>269.3</td>
-      <td>286.9</td>
+      <td>269.0</td>
+      <td>286.8</td>
+    </tr>
+    <tr>
+      <td>283</td>
+      <td>Western Michigan</td>
+      <td>292.0</td>
+      <td>279.7</td>
+      <td>287.1</td>
     </tr>
     <tr>
       <td>284</td>
       <td>Brown</td>
       <td>298.0</td>
-      <td>270.7</td>
-      <td>287.1</td>
+      <td>271.0</td>
+      <td>287.2</td>
     </tr>
     <tr>
       <td>285</td>
@@ -2097,45 +2146,45 @@
     </tr>
     <tr>
       <td>286</td>
-      <td>Evansville</td>
-      <td>289.3</td>
-      <td>284.7</td>
-      <td>287.5</td>
+      <td>Mount St. Mary's</td>
+      <td>281.0</td>
+      <td>298.0</td>
+      <td>287.8</td>
     </tr>
     <tr>
       <td>287</td>
-      <td>Mount St. Mary's</td>
-      <td>281.0</td>
-      <td>298.3</td>
-      <td>287.9</td>
-    </tr>
-    <tr>
-      <td>288</td>
       <td>New Hampshire</td>
       <td>275.3</td>
-      <td>310.0</td>
-      <td>289.2</td>
-    </tr>
-    <tr>
-      <td>289</td>
-      <td>North Carolina A&T</td>
-      <td>295.0</td>
-      <td>280.7</td>
+      <td>310.3</td>
       <td>289.3</td>
     </tr>
     <tr>
-      <td>290</td>
+      <td>288</td>
+      <td>North Carolina A&T</td>
+      <td>295.0</td>
+      <td>281.0</td>
+      <td>289.4</td>
+    </tr>
+    <tr>
+      <td>289</td>
       <td>Florida A&M</td>
       <td>268.3</td>
       <td>321.0</td>
       <td>289.4</td>
     </tr>
     <tr>
+      <td>290</td>
+      <td>Evansville</td>
+      <td>289.3</td>
+      <td>289.7</td>
+      <td>289.5</td>
+    </tr>
+    <tr>
       <td>291</td>
       <td>Eastern Kentucky</td>
       <td>310.0</td>
-      <td>259.3</td>
-      <td>289.7</td>
+      <td>259.0</td>
+      <td>289.6</td>
     </tr>
     <tr>
       <td>292</td>
@@ -2148,57 +2197,57 @@
       <td>293</td>
       <td>Cleveland St.</td>
       <td>290.3</td>
-      <td>291.7</td>
-      <td>290.9</td>
+      <td>291.3</td>
+      <td>290.7</td>
     </tr>
     <tr>
       <td>294</td>
       <td>Le Moyne</td>
       <td>296.0</td>
-      <td>285.0</td>
-      <td>291.6</td>
+      <td>285.7</td>
+      <td>291.9</td>
     </tr>
     <tr>
       <td>295</td>
       <td>Mercyhurst</td>
       <td>298.0</td>
-      <td>284.7</td>
-      <td>292.7</td>
+      <td>285.0</td>
+      <td>292.8</td>
     </tr>
     <tr>
       <td>296</td>
+      <td>Central Michigan</td>
+      <td>299.0</td>
+      <td>291.0</td>
+      <td>295.8</td>
+    </tr>
+    <tr>
+      <td>297</td>
+      <td>Delaware</td>
+      <td>300.3</td>
+      <td>290.3</td>
+      <td>296.3</td>
+    </tr>
+    <tr>
+      <td>298</td>
       <td>UTEP</td>
       <td>310.3</td>
       <td>275.7</td>
       <td>296.5</td>
     </tr>
     <tr>
-      <td>297</td>
-      <td>Delaware</td>
-      <td>300.3</td>
-      <td>290.7</td>
-      <td>296.5</td>
-    </tr>
-    <tr>
-      <td>298</td>
-      <td>Central Michigan</td>
-      <td>299.0</td>
-      <td>294.0</td>
-      <td>297.0</td>
-    </tr>
-    <tr>
       <td>299</td>
-      <td>Boston University</td>
-      <td>312.0</td>
-      <td>281.0</td>
-      <td>299.6</td>
+      <td>Northern Illinois</td>
+      <td>297.7</td>
+      <td>302.7</td>
+      <td>299.7</td>
     </tr>
     <tr>
       <td>300</td>
-      <td>Northern Illinois</td>
-      <td>297.7</td>
-      <td>303.0</td>
-      <td>299.8</td>
+      <td>Boston University</td>
+      <td>312.0</td>
+      <td>281.3</td>
+      <td>299.7</td>
     </tr>
     <tr>
       <td>301</td>
@@ -2211,36 +2260,36 @@
       <td>302</td>
       <td>Lehigh</td>
       <td>302.3</td>
-      <td>301.0</td>
-      <td>301.8</td>
+      <td>300.3</td>
+      <td>301.5</td>
     </tr>
     <tr>
       <td>303</td>
       <td>USC Upstate</td>
       <td>306.3</td>
-      <td>295.7</td>
-      <td>302.1</td>
+      <td>295.0</td>
+      <td>301.8</td>
     </tr>
     <tr>
       <td>304</td>
+      <td>Pepperdine</td>
+      <td>322.7</td>
+      <td>275.3</td>
+      <td>303.7</td>
+    </tr>
+    <tr>
+      <td>305</td>
       <td>Little Rock</td>
       <td>297.7</td>
       <td>312.7</td>
       <td>303.7</td>
     </tr>
     <tr>
-      <td>305</td>
-      <td>Pepperdine</td>
-      <td>322.7</td>
-      <td>275.7</td>
-      <td>303.9</td>
-    </tr>
-    <tr>
       <td>306</td>
       <td>Stetson</td>
       <td>289.7</td>
-      <td>328.7</td>
-      <td>305.3</td>
+      <td>328.3</td>
+      <td>305.1</td>
     </tr>
     <tr>
       <td>307</td>
@@ -2251,17 +2300,17 @@
     </tr>
     <tr>
       <td>308</td>
-      <td>Ball St.</td>
-      <td>314.0</td>
-      <td>293.3</td>
-      <td>305.7</td>
-    </tr>
-    <tr>
-      <td>309</td>
       <td>North Carolina Central</td>
       <td>282.0</td>
       <td>343.0</td>
       <td>306.4</td>
+    </tr>
+    <tr>
+      <td>309</td>
+      <td>Ball St.</td>
+      <td>314.0</td>
+      <td>296.0</td>
+      <td>306.8</td>
     </tr>
     <tr>
       <td>310</td>
@@ -2274,36 +2323,36 @@
       <td>311</td>
       <td>Louisiana</td>
       <td>308.7</td>
-      <td>311.3</td>
-      <td>309.7</td>
+      <td>310.3</td>
+      <td>309.3</td>
     </tr>
     <tr>
       <td>312</td>
+      <td>Loyola Chicago</td>
+      <td>325.7</td>
+      <td>285.0</td>
+      <td>309.4</td>
+    </tr>
+    <tr>
+      <td>313</td>
       <td>New Haven</td>
       <td>293.7</td>
       <td>334.3</td>
       <td>309.9</td>
     </tr>
     <tr>
-      <td>313</td>
+      <td>314</td>
       <td>UMass Lowell</td>
       <td>307.7</td>
       <td>314.0</td>
       <td>310.2</td>
     </tr>
     <tr>
-      <td>314</td>
-      <td>Loyola Chicago</td>
-      <td>325.7</td>
-      <td>287.3</td>
-      <td>310.3</td>
-    </tr>
-    <tr>
       <td>315</td>
       <td>East Texas A&M</td>
       <td>323.3</td>
-      <td>296.3</td>
-      <td>312.5</td>
+      <td>296.0</td>
+      <td>312.4</td>
     </tr>
     <tr>
       <td>316</td>
@@ -2316,15 +2365,15 @@
       <td>317</td>
       <td>Northwestern St.</td>
       <td>331.7</td>
-      <td>288.0</td>
-      <td>314.2</td>
+      <td>287.3</td>
+      <td>313.9</td>
     </tr>
     <tr>
       <td>318</td>
       <td>Southeastern Louisiana</td>
       <td>336.0</td>
-      <td>281.7</td>
-      <td>314.3</td>
+      <td>281.3</td>
+      <td>314.1</td>
     </tr>
     <tr>
       <td>319</td>
@@ -2337,8 +2386,8 @@
       <td>320</td>
       <td>IU Indy</td>
       <td>317.3</td>
-      <td>311.7</td>
-      <td>315.1</td>
+      <td>311.3</td>
+      <td>314.9</td>
     </tr>
     <tr>
       <td>321</td>
@@ -2370,17 +2419,17 @@
     </tr>
     <tr>
       <td>325</td>
-      <td>Lafayette</td>
-      <td>325.7</td>
-      <td>304.7</td>
-      <td>317.3</td>
+      <td>Cal St. Bakersfield</td>
+      <td>319.3</td>
+      <td>314.0</td>
+      <td>317.2</td>
     </tr>
     <tr>
       <td>326</td>
-      <td>Cal St. Bakersfield</td>
-      <td>319.3</td>
-      <td>314.3</td>
-      <td>317.3</td>
+      <td>Lafayette</td>
+      <td>325.7</td>
+      <td>305.0</td>
+      <td>317.4</td>
     </tr>
     <tr>
       <td>327</td>
@@ -2407,8 +2456,8 @@
       <td>330</td>
       <td>Northern Arizona</td>
       <td>328.3</td>
-      <td>307.0</td>
-      <td>319.8</td>
+      <td>306.7</td>
+      <td>319.7</td>
     </tr>
     <tr>
       <td>331</td>
@@ -2442,8 +2491,8 @@
       <td>335</td>
       <td>Maryland Eastern Shore</td>
       <td>313.0</td>
-      <td>338.0</td>
-      <td>323.0</td>
+      <td>338.3</td>
+      <td>323.1</td>
     </tr>
     <tr>
       <td>336</td>
@@ -2461,38 +2510,38 @@
     </tr>
     <tr>
       <td>338</td>
-      <td>Canisius</td>
+      <td>Air Force</td>
       <td>313.0</td>
-      <td>344.3</td>
-      <td>325.5</td>
+      <td>345.7</td>
+      <td>326.1</td>
     </tr>
     <tr>
       <td>339</td>
-      <td>Air Force</td>
+      <td>Canisius</td>
       <td>313.0</td>
-      <td>346.0</td>
-      <td>326.2</td>
+      <td>346.3</td>
+      <td>326.3</td>
     </tr>
     <tr>
       <td>340</td>
       <td>North Alabama</td>
       <td>325.0</td>
-      <td>331.3</td>
-      <td>327.5</td>
+      <td>331.0</td>
+      <td>327.4</td>
     </tr>
     <tr>
       <td>341</td>
       <td>Tennessee Tech</td>
       <td>325.7</td>
-      <td>331.7</td>
-      <td>328.1</td>
+      <td>331.3</td>
+      <td>327.9</td>
     </tr>
     <tr>
       <td>342</td>
       <td>Southern Indiana</td>
       <td>324.3</td>
-      <td>339.3</td>
-      <td>330.3</td>
+      <td>339.7</td>
+      <td>330.5</td>
     </tr>
     <tr>
       <td>343</td>
@@ -2510,31 +2559,31 @@
     </tr>
     <tr>
       <td>345</td>
-      <td>UMKC</td>
-      <td>325.3</td>
-      <td>351.3</td>
-      <td>335.7</td>
+      <td>Niagara</td>
+      <td>327.0</td>
+      <td>348.3</td>
+      <td>335.5</td>
     </tr>
     <tr>
       <td>346</td>
+      <td>UMKC</td>
+      <td>325.3</td>
+      <td>351.0</td>
+      <td>335.6</td>
+    </tr>
+    <tr>
+      <td>347</td>
       <td>Morgan St.</td>
       <td>322.7</td>
       <td>355.3</td>
       <td>335.7</td>
     </tr>
     <tr>
-      <td>347</td>
+      <td>348</td>
       <td>Maine</td>
       <td>332.0</td>
-      <td>342.3</td>
-      <td>336.1</td>
-    </tr>
-    <tr>
-      <td>348</td>
-      <td>Niagara</td>
-      <td>327.0</td>
-      <td>350.0</td>
-      <td>336.2</td>
+      <td>342.7</td>
+      <td>336.3</td>
     </tr>
     <tr>
       <td>349</td>
@@ -2561,8 +2610,8 @@
       <td>352</td>
       <td>Saint Francis</td>
       <td>333.7</td>
-      <td>351.7</td>
-      <td>340.9</td>
+      <td>352.0</td>
+      <td>341.0</td>
     </tr>
     <tr>
       <td>353</td>
@@ -2573,17 +2622,17 @@
     </tr>
     <tr>
       <td>354</td>
-      <td>Bryant</td>
-      <td>340.3</td>
-      <td>350.3</td>
+      <td>Chicago St.</td>
+      <td>338.0</td>
+      <td>353.7</td>
       <td>344.3</td>
     </tr>
     <tr>
       <td>355</td>
-      <td>Chicago St.</td>
-      <td>338.0</td>
-      <td>354.0</td>
-      <td>344.4</td>
+      <td>Bryant</td>
+      <td>340.3</td>
+      <td>350.3</td>
+      <td>344.3</td>
     </tr>
     <tr>
       <td>356</td>
