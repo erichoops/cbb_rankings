@@ -8,26 +8,23 @@ header_descriptions = {
     "Resume Rank": "Wins, losses, strength of schedule",
     "Predictive Rank": "Margins matter more than W/L",
     "Recency Rank": "Last 2 weeks performance",
-    "Composite Rank": "Weighted average of all types"
+    "Composite Rank": "Weighted average of all types",
 }
 
 # Update column names to include <div class='column-desc'>
 new_columns = []
 for col in df.columns:
     if col in header_descriptions:
-        new_columns.append(f"{col}<div class='column-desc'>{header_descriptions[col]}</div>")
+        new_columns.append(
+            f"{col}<div class='column-desc'>{header_descriptions[col]}</div>"
+        )
     else:
         new_columns.append(col)
 
 df.columns = new_columns
 
 # Generate HTML
-table_html = df.to_html(
-    index=False,
-    classes="rankings-table",
-    border=0,
-    escape=False
-)
+table_html = df.to_html(index=False, classes="rankings-table", border=0, escape=False)
 
 updated = datetime.utcnow().strftime("%B %d, %Y")
 
@@ -93,7 +90,7 @@ body {{
 /* Subtitle / Updated date */
 .subtitle {{
     font-size: 0.85rem;
-    color: #374151;
+    color: #f9fafb;
     margin-top: 0.25rem;
     text-align: left;
 }}
