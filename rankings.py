@@ -69,8 +69,8 @@ def generate_rankings():
     # cols = pd.Series(df.columns)
     # df.columns = cols.where(~cols.duplicated(), cols + '_' + cols.groupby(cols).cumcount().astype(str))
 
-    resume_weight = 0.63
-    predictive_weight = 0.37
+    resume_weight = 0.65
+    predictive_weight = 0.35
     # recency_weight = .1
 
     # df = pd.DataFrame(df, columns = ['Team', 'Avg', 'Avg_1'])
