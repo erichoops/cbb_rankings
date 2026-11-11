@@ -1,4 +1,5 @@
-from rankings import generate_rankings
+# from rankings import generate_rankings
+from archive.rankings_early_season import generate_rankings
 from datetime import datetime
 
 df = generate_rankings()

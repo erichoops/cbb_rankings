@@ -160,7 +160,7 @@ def generate_rankings():
     espn_df = get_espn_sor()
     kenpom_df = get_kenpom_df()
     merged_df = kenpom_df.merge(espn_df, left_on="Team", right_on="School", how="outer")
-    merged_df["Total"] = (merged_df["Rk"] * 0.5) + (merged_df["sor_rank"] * 0.5)
+    merged_df["Total"] = (merged_df["Rk"] * 0.9) + (merged_df["sor_rank"] * 0.1)
     print(merged_df.columns)
     merged_df = merged_df.drop(columns=["CONF", "Team_y", "School"])
     merged_df = merged_df.rename(
