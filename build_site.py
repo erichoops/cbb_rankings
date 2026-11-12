@@ -1,6 +1,7 @@
 # from rankings import generate_rankings
 from archive.rankings_early_season import generate_rankings
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 df = generate_rankings()
 
@@ -27,7 +28,7 @@ df.columns = new_columns
 # Generate HTML
 table_html = df.to_html(index=False, classes="rankings-table", border=0, escape=False)
 
-updated = datetime.utcnow().strftime("%B %d, %Y")
+updated = datetime.now(ZoneInfo("America/New_York")).strftime("%B %d, %Y")
 
 html = f"""<!DOCTYPE html>
 <html lang="en">
