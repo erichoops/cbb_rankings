@@ -156,18 +156,54 @@ def get_kenpom_df():
     return df
 
 
+def get_cjh_rankings():
+    import requests
+    import pandas as pd
+
+    url = "https://cjhanalytics.com/live_ratings_2027.json"
+
+    data = requests.get(url).json()
+
+    rows = []
+
+    for team, stats in data["teams"].items():
+        live_rq = stats.get("live_rq")
+        bmq = stats.get("live_bmq")
+
+        if live_rq is None or bmq is None:
+            continue
+
+        rows.append(
+            {
+                "Team": team,
+                "LIVE RQ": live_rq,
+                "BMQ": bmq,
+                "Combined": (live_rq * 0.5) + (bmq * 0.5),
+            }
+        )
+
+    df = pd.DataFrame(rows)
+
+    df = df.sort_values("Combined", ascending=False).reset_index(drop=True)
+
+    # Add ranking index starting at 1
+    df.insert(0, "Rank", df.index + 1)
+
+    return df
+
+
 def generate_rankings():
-    espn_df = get_espn_sor()
+    # espn_df = get_espn_sor()
+    cjh_df = get_cjh_rankings()
     kenpom_df = get_kenpom_df()
-    merged_df = kenpom_df.merge(espn_df, left_on="Team", right_on="School", how="outer")
-    merged_df["Total"] = (merged_df["Rk"] * 0.9) + (merged_df["sor_rank"] * 0.1)
+    merged_df = kenpom_df.merge(cjh_df, left_on="Team", right_on="Team", how="outer")
+    merged_df["Total"] = (merged_df["Rk"] * 0.9) + (merged_df["Rank"] * 0.1)
     print(merged_df.columns)
-    merged_df = merged_df.drop(columns=["CONF", "Team_y", "School"])
     merged_df = merged_df.rename(
         columns={
             "Team_x": "Team",
             "Rk": "Predictive Rank",
-            "sor_rank": "Resume Rank",
+            "Rank": "Resume Rank",
             "Total": "Score",
         }
     )

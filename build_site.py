@@ -6,7 +6,7 @@ df = generate_rankings()
 
 # Define inline descriptions for headers
 header_descriptions = {
-    "Resume Rank": "Wins, losses, strength of schedule",
+    "Resume Rank": "Wins, losses, strength of schedule Powered by CJH Analytics",
     "Predictive Rank": "Margins matter more than W/L",
     "Recency Rank": "Last 2 weeks performance",
     "Composite Rank": "Weighted average of all types",
