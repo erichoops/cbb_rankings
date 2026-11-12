@@ -170,6 +170,14 @@ def get_cjh_rankings():
         live_rq = stats.get("live_rq")
         bmq = stats.get("live_bmq")
 
+        # team_name_mapping = {
+        # "LSU New Orleans": "New Orleans",
+        # "Southern Miss": "Southern Mississippi"
+        # }
+
+        # for team, stats in data["teams"].items():
+        #     team = team_name_mapping.get(team, team)
+
         if live_rq is None or bmq is None:
             continue
 
@@ -184,6 +192,10 @@ def get_cjh_rankings():
 
     df = pd.DataFrame(rows)
 
+    df["Team"] = df["Team"].replace(
+        {"New Orleans": "LSU New Orleans", "Southern Mississippi": "Southern Miss"}
+    )
+
     df = df.sort_values("Combined", ascending=False).reset_index(drop=True)
 
     # Add ranking index starting at 1
@@ -197,6 +209,7 @@ def generate_rankings():
     cjh_df = get_cjh_rankings()
     kenpom_df = get_kenpom_df()
     merged_df = kenpom_df.merge(cjh_df, left_on="Team", right_on="Team", how="outer")
+    merged_df["Rank"] = merged_df["Rank"].fillna(365)
     merged_df["Total"] = (merged_df["Rk"] * 0.9) + (merged_df["Rank"] * 0.1)
     print(merged_df.columns)
     merged_df = merged_df.rename(
