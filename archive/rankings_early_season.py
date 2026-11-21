@@ -151,7 +151,7 @@ def get_kenpom_df():
     # (Optional) clean up column names
     df.columns = df.columns.str.strip()
 
-    df = df[["Rk", "Team"]]
+    df = df[["Rk", "Team", "Conf"]]
 
     return df
 
@@ -215,6 +215,7 @@ def generate_rankings():
     merged_df = merged_df.rename(
         columns={
             "Team_x": "Team",
+            "Conf": "Conference",
             "Rk": "Predictive Rank",
             "Rank": "Resume Rank",
             "Total": "Score",
@@ -224,7 +225,9 @@ def generate_rankings():
 
     merged_df.insert(0, "Rank", merged_df.index + 1)
 
-    merged_df = merged_df[["Rank", "Team", "Predictive Rank", "Resume Rank", "Score"]]
+    merged_df = merged_df[
+        ["Rank", "Team", "Conference", "Predictive Rank", "Resume Rank", "Score"]
+    ]
 
     return merged_df
 
