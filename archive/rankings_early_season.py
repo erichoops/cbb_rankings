@@ -210,7 +210,7 @@ def generate_rankings():
     kenpom_df = get_kenpom_df()
     merged_df = kenpom_df.merge(cjh_df, left_on="Team", right_on="Team", how="outer")
     merged_df["Rank"] = merged_df["Rank"].fillna(365)
-    merged_df["Total"] = (merged_df["Rk"] * 0.9) + (merged_df["Rank"] * 0.1)
+    merged_df["Total"] = (merged_df["Rk"] * 0.84) + (merged_df["Rank"] * 0.16)
     print(merged_df.columns)
     merged_df = merged_df.rename(
         columns={
